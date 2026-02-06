@@ -1,290 +1,161 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Loja Minimalista — Página Responsiva</title>
-    <meta name="description" content="Página de produto com design limpo e responsivo, inspirada em layouts minimalistas.">
-    <style>
-        :root{
-            --bg:#f6f7f8;
-            --slide-height:320px;
-            --slide-max-width:420px;
-            --slide-interval:5000ms;
-            --slide-1: url('images/slide1.jpg');
-            --slide-2: url('images/slide2.jpg');
-            --slide-3: url('images/slide3.jpg');
-            --card:#ffffff;
-            --muted:#6b7280;
-            --accent:#0071e3;
-            --glass: rgba(255,255,255,0.6);
-            --radius:14px;
-            --max:1200px;
-            --gap:24px;
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-        }
-        *{box-sizing:border-box}
-        html,body{height:100%}
-        body{
-            margin:0;
-            background:linear-gradient(180deg,var(--bg),#fff);
-            color:#0f1724;
-            -webkit-font-smoothing:antialiased;
-            -moz-osx-font-smoothing:grayscale;
-            line-height:1.45;
-            padding-bottom:48px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projecto PWM | Projecto WEB de Venda iPhone</title>
 
-        /* Container */
-        .wrap{max-width:var(--max);margin:0 auto;padding:20px;}
+  <link href="Css/css/bootstrap.min.css" rel="stylesheet">
 
-        /* Header / Nav */
-        header{
-            position:sticky;top:0;z-index:60;
-            backdrop-filter: blur(6px);
-            background:linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.6));
-            border-bottom:1px solid rgba(15,23,36,0.06);
-        }
-        .nav{display:flex;align-items:center;justify-content:space-between;padding:10px 20px;max-width:var(--max);margin:0 auto;}
-        .logo{font-weight:700;font-size:1.05rem;letter-spacing:0.4px}
-        nav ul{display:flex;gap:16px;list-style:none;margin:0;padding:0;align-items:center}
-        nav a{color:var(--muted);text-decoration:none;padding:10px;border-radius:8px;font-weight:600}
-        nav a:hover{color:var(--accent);background:rgba(0,0,0,0.03)}
-        .actions{display:flex;gap:12px;align-items:center}
-        .btn{
-            background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;border:none;font-weight:700;cursor:pointer;
-            box-shadow:0 6px 20px rgba(0,113,227,0.12);
-        }
-        .icon-btn{background:transparent;border:1px solid rgba(15,23,36,0.06);padding:8px;border-radius:10px;cursor:pointer}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        /* Mobile menu */
-        .menu-toggle{display:none}
-        .mobile-nav{
-            display:none;flex-direction:column;gap:8px;padding:12px 20px;border-top:1px solid rgba(15,23,36,0.04);
-            background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
-        }
-
-        /* Hero */
-        .hero{
-            display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding:48px 20px;
-        }
-        .hero-left h1{font-size:clamp(28px,5vw,48px);margin:0 0 12px;line-height:1.02}
-        .sub{color:var(--muted);font-size:1rem;margin-bottom:18px}
-        .hero-cta{display:flex;gap:12px}
-        .hero-right{
-            display:flex;align-items:center;justify-content:center;
-        }
-        .device{
-            width:100%;max-width:360px;height:220px;border-radius:28px;background:linear-gradient(180deg,#f8fafc,#fff);
-            box-shadow: 0 18px 40px rgba(12,18,30,0.08);
-            display:flex;align-items:center;justify-content:center;flex-direction:column;padding:18px;
-            border:1px solid rgba(15,23,36,0.04);
-        }
-        .device .screen{
-            width:92%;height:130px;border-radius:12px;background:linear-gradient(180deg,#e9f0ff,#fff);
-            display:flex;align-items:center;justify-content:center;color:var(--accent);font-weight:700;
-            box-shadow: inset 0 -6px 24px rgba(0,0,0,0.03);
-        }
-
-        /* Product grid */
-        .products{padding:20px 0 48px}
-        .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
-        .card{
-            background:var(--card);padding:18px;border-radius:16px;box-shadow:0 8px 24px rgba(12,18,30,0.04);border:1px solid rgba(15,23,36,0.03);
-            transition:transform .18s ease, box-shadow .18s ease;
-        }
-        .card:hover{transform:translateY(-6px);box-shadow:0 22px 50px rgba(12,18,30,0.08)}
-        .card .thumb{height:160px;border-radius:12px;background:linear-gradient(180deg,#f4f6fb,#fff);display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:700;margin-bottom:12px}
-        .card h3{margin:0 0 8px;font-size:1.05rem}
-        .price{font-weight:800;color:#111}
-        /* Carousel: horizontal, touch-friendly carousel for product cards */
-        .products { position:relative; overflow:hidden; }
-
-        /* Make the product list scrollable and snap on small screens */
-        @media (max-width:720px){
-            .grid{
-                display:flex;
-                overflow-x:auto;
-                -webkit-overflow-scrolling:touch;
-                scroll-snap-type:x mandatory;
-                gap:18px;
-                padding-bottom:8px;
-                margin:0 -12px; /* allow partial peeking */
-                padding-left:12px;
-                padding-right:12px;
-            }
-            .card{
-                flex:0 0 78%;
-                max-width:360px;
-                scroll-snap-align:center;
-                margin:0;
-            }
-
-            /* hide native scrollbar */
-            .grid::-webkit-scrollbar{ display:none; }
-            .grid{ -ms-overflow-style:none; scrollbar-width:none; }
-
-            /* optional autoplay: add class "autoplay" to .grid via JS to enable */
-            .grid.autoplay{
-                animation:carousel-scroll 12s linear infinite;
-            }
-            .grid.autoplay:hover{ animation-play-state:paused; }
-
-            @keyframes carousel-scroll{
-                0%   { transform:translateX(0); }
-                20%  { transform:translateX(0); }
-                40%  { transform:translateX(-100%); }
-                60%  { transform:translateX(-100%); }
-                80%  { transform:translateX(-200%); }
-                100% { transform:translateX(-200%); }
-            }
-        }
-
-        /* Simple previous/next controls (requires adding the buttons in HTML if desired) */
-        .carousel-control{
-            position:absolute;top:50%;transform:translateY(-50%);
-            background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.06);
-            width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;
-            cursor:pointer;box-shadow:0 6px 20px rgba(12,18,30,0.06);
-        }
-        .carousel-prev{ left:12px; }
-        .carousel-next{ right:12px; }
-        /* Footer */
-        footer{padding:36px 20px;color:var(--muted);font-size:0.95rem}
-        .footer-grid{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;max-width:var(--max);margin:0 auto}
-        .foot-col{min-width:160px}
-
-        /* Responsive */
-        @media (max-width:1000px){
-            .hero{grid-template-columns:1fr 320px}
-            .grid{grid-template-columns:repeat(2,1fr)}
-        }
-        @media (max-width:720px){
-            nav ul{display:none}
-            .menu-toggle{display:inline-flex}
-            .mobile-nav{display:flex}
-            .hero{grid-template-columns:1fr;gap:18px;padding:28px 16px}
-            .hero-right{order:-1}
-            .device{max-width:320px;height:200px}
-            .grid{grid-template-columns:1fr}
-        }
-
-        /* Small utilities */
-        .muted{color:var(--muted)}
-        .small{font-size:0.9rem}
-    </style>
+  <link rel="stylesheet" href="Css/css/stylenovo.css">
 </head>
+
 <body>
-    <header>
-        <div class="nav wrap">
-            <div style="display:flex;align-items:center;gap:12px">
-                <button class="menu-toggle icon-btn" aria-label="Abrir menu" id="menuBtn">☰</button>
-                <div class="logo"><div image="#">APPLE</div></div>
-            </div>
 
-            <nav>
-                <ul>
-                    <li><a href="#">iPhone</a></li>
-                    <li><a href="#">iPad</a></li>
-                    <li><a href="#">MAC</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-            </nav>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-md navbar-apple sticky-top">
+    <div class="container max-width-lg">
+      <a class="navbar-brand py-0" href="#" data-page="pages/home.html">
+        <img src="Image/apple-logo-svgrepo-com.svg" alt="Projecto PWM" height="18" width="25">
+      </a>
 
-            <div class="actions">
-                <button class="icon-btn" aria-label="Buscar">🔍</button>
-                <button class="btn">Comprar</button>
+      <div class="d-flex align-items-center order-md-last">
+        <a href="#" class="nav-link py-0 d-none d-sm-flex" title="Pesquisar">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </a>
+
+        <a href="#" class="nav-link py-0 position-relative" title="Carrinho">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-badge">0</span>
+        </a>
+
+        <a href="#" class="nav-link py-0 d-none d-md-flex" title="Entrar">
+          <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="1.5" fill="none"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span class="login-text">Entrar</span>
+        </a>
+
+        <button class="navbar-toggler border-0 shadow-none ms-2" type="button" data-bs-toggle="collapse"
+          data-bs-target="#appleNavbar">
+          <span class="navbar-toggler-icon" style="width: 1.2em; height: 1.2em;"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse justify-content-center" id="appleNavbar">
+        <ul class="navbar-nav gap-4">
+          <li class="nav-item"><a class="nav-link" href="#" data-page="pages/iphone.html">iPhone</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" data-page="pages/ipad.html">iPad</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" data-page="pages/mac.html">Mac</a></li>
+          <li class="nav-item"><a class="nav-link" href="#" data-page="pages/suporte.html">Suporte</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+ 
+  <div id="PaginaCentral"></div>
+
+
+  <footer>
+    <div class="container max-width-lg">
+      <div class="footer-bottom">
+        <div class="row align-items-center">
+          <div class="col-12 col-md-8 text-center text-md-start mb-3 mb-md-0">
+            <p class="mb-0">Copyright © <span id="year"></span> | Projecto WEB Venda iPhone . Todos os direitos reservados.</p>
+            <div class="footer-legal-links mt-2">
+              <a href="#">Política de Privacidade</a>
+              <a href="#">Termos e Condições</a>
+              <a href="#">FAQs</a>
+              <a href="#">Contactos</a>
             </div>
+          </div>
+          <div class="col-12 col-md-4 text-center text-md-end">
+            <span class="text-dark fw-medium">Inglês | Português</span>
+          </div>
         </div>
+      </div>
+    </div>
+  </footer>
 
-        <div class="mobile-nav wrap" id="mobileNav" style="display:none">
-            <a href="#" class="small">Produtos</a>
-            <a href="#" class="small">Design</a>
-            <a href="#" class="small">Suporte</a>
-            <a href="#" class="small">Loja</a>
-        </div>
-    </header>
+  <script src="Css/js/bootstrap.bundle.min.js"></script>
 
-    <main>
-        <section class="hero wrap">
-            <div class="hero-left">
-                <p class="muted small">Lançamento</p>
-                <h1>Novo Produto Elegante — Simplicidade que encanta</h1>
-                <p class="sub">Desempenho poderoso, design leve e bateria para o dia todo. Tela nítida para fotos, vídeos e produtividade.</p>
-                <div class="hero-cta">
-                    <button class="btn">Comprar agora</button>
-                    <button class="icon-btn">Ver especificações</button>
-                </div>
-            </div>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-            <div class="hero-right">
-                <div class="device" role="img" aria-label="Ilustração do produto">
-                    <div style="font-size:0.8rem;color:var(--muted);margin-bottom:8px">Modelo XYZ</div>
-                    <div class="screen">Preview do Produto</div>
-                </div>
-            </div>
-        </section>
+  async function carregarPagina(url) {
+    try {
+      const res = await fetch(url, { cache: "no-store" });
 
-        <section class="products wrap">
-            <h2 style="margin:0 0 16px">Coleção</h2>
-            <div class="grid">
-                <article class="card">
-                    <div class="thumb">Imagem 1</div>
-                    <h3>Novo XYZ — 128 GB</h3>
-                    <p class="muted small">Cor: Prata • Disponível</p>
-                    <p class="price">R$ 4.999</p>
-                </article>
+      if (!res.ok) {
+        document.getElementById("PaginaCentral").innerHTML =
+          `<div class="container py-4">
+             <div class="alert alert-danger">
+               Erro ao carregar a página: <b>${url}</b><br>
+               Status: <b>${res.status}</b> (${res.statusText})
+             </div>
+           </div>`;
+        return;
+      }
 
-                <article class="card">
-                    <div class="thumb">Imagem 2</div>
-                    <h3>XYZ Pro — 256 GB</h3>
-                    <p class="muted small">Cor: Grafite • Em estoque</p>
-                    <p class="price">R$ 6.499</p>
-                </article>
+      const htmlText = await res.text();
+      const doc = new DOMParser().parseFromString(htmlText, "text/html");
 
-                <article class="card">
-                    <div class="thumb">Imagem 3</div>
-                    <h3>XYZ Mini — 64 GB</h3>
-                    <p class="muted small">Cor: Azul • Limitado</p>
-                    <p class="price">R$ 3.999</p>
-                </article>
-            </div>
-        </section>
-    </main>
+      const conteudo = doc.querySelector("#conteudo");
+      if (!conteudo) {
+        document.getElementById("PaginaCentral").innerHTML =
+          `<div class="container py-4">
+             <div class="alert alert-warning">
+               A página <b>${url}</b> abriu, mas não tem <b>#conteudo</b>.
+             </div>
+           </div>`;
+        return;
+      }
 
-    <footer>
-        <div class="footer-grid">
-            <div class="foot-col">
-                <strong>LojaMinimal</strong>
-                <p class="muted small">Design limpo. Experiência pensada para todos os dispositivos.</p>
-            </div>
-            <div class="foot-col">
-                <div style="font-weight:700;margin-bottom:6px">Links</div>
-                <div class="small muted">Produtos · Ajuda · Contato</div>
-            </div>
-            <div class="foot-col">
-                <div style="font-weight:700;margin-bottom:6px">Contato</div>
-                <div class="small muted">email@exemplo.com · +55 11 99999-9999</div>
-            </div>
-        </div>
-    </footer>
+      const alvo = document.getElementById("PaginaCentral");
+      alvo.innerHTML = "";
+      alvo.appendChild(conteudo);
 
-    <script>
-        // Mobile menu toggle
-        const btn = document.getElementById('menuBtn');
-        const mobileNav = document.getElementById('mobileNav');
-        btn.addEventListener('click', ()=> {
-            const open = mobileNav.style.display === 'flex';
-            mobileNav.style.display = open ? 'none' : 'flex';
-            btn.setAttribute('aria-expanded', String(!open));
-        });
+    } catch (err) {
+      document.getElementById("PaginaCentral").innerHTML =
+        `<div class="container py-4">
+           <div class="alert alert-danger">
+             Falha no fetch: <b>${url}</b><br>
+             ${err}
+           </div>
+         </div>`;
+    }
+  }
 
-        // Optional: header shadow on scroll
-        const header = document.querySelector('header');
-        window.addEventListener('scroll', ()=>{
-            if(window.scrollY > 30) header.style.boxShadow = '0 6px 20px rgba(12,18,30,0.06)';
-            else header.style.boxShadow = 'none';
-        });
-    </script>
+  // Página inicial
+  document.addEventListener("DOMContentLoaded", () => {
+    carregarPagina("./pages/home.html");
+  });
+
+  // Clique no menu
+  document.addEventListener("click", (e) => {
+    const link = e.target.closest("[data-page]");
+    if (!link) return;
+
+    e.preventDefault();
+    carregarPagina(link.getAttribute("data-page"));
+  });
+</script>
+
+
 </body>
 </html>
