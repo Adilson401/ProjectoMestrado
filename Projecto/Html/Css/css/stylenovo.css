@@ -1,0 +1,334 @@
+     :root {
+            --apple-black: #1d1d1f;
+            --apple-gray: #f5f5f7;
+            --apple-blue: #0066cc;
+            --apple-blue-hover: #0077ed;
+            --navbar-height: 48px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #ffffff;
+            color: var(--apple-black);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* Apple Navigation Styling */
+        .navbar-apple {
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            height: var(--navbar-height);
+            padding: 0;
+            transition: background-color 0.3s ease;
+            z-index: 1000;
+        }
+
+        .navbar-apple .nav-link {
+            font-size: 12px;
+            color: rgba(0,0,0,0.8);
+            padding: 0 12px !important;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-apple .nav-link:hover {
+            color: #000;
+        }
+
+        /* Cart & Login Specifics */
+        .nav-icon-link {
+            padding: 0 10px !important;
+        }
+
+        .cart-badge {
+            font-size: 9px;
+            background: #8e8e93;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 5px;
+            position: absolute;
+            top: -4px;
+            right: 0px;
+            font-weight: 600;
+        }
+
+        .login-text {
+            font-size: 12px;
+            margin-left: 5px;
+            font-weight: 400;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding-top: 120px;
+            padding-bottom: 80px;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .hero-title {
+            font-size: clamp(48px, 10vw, 96px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(20px, 3.5vw, 32px);
+            font-weight: 400;
+            color: #1d1d1f;
+            margin-bottom: 32px;
+        }
+
+        /* Buttons */
+        .btn-apple-primary {
+            background-color: var(--apple-blue);
+            color: #fff;
+            border-radius: 980px;
+            padding: 12px 24px;
+            font-size: 17px;
+            font-weight: 500;
+            border: none;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-apple-primary:hover {
+            background-color: var(--apple-blue-hover);
+            color: #fff;
+            transform: scale(1.02);
+        }
+
+        .btn-link-apple {
+            color: var(--apple-blue);
+            text-decoration: none;
+            font-size: 21px;
+            font-weight: 400;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        /* Product Cards */
+        .product-grid-section {
+            background-color: #fff;
+            padding: 100px 0;
+        }
+
+        .product-card {
+            border: none;
+            text-align: center;
+            padding: 60px 20px;
+            background: #fff;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 24px;
+            margin-bottom: 40px;
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .product-card:hover img {
+            transform: scale(1.04);
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            background-color: #fbfbfd;
+            padding: 100px 0;
+        }
+
+        .testimonial-card {
+            background: #fff;
+            border: 1px solid #d2d2d7;
+            border-radius: 30px;
+            padding: 48px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .avatar {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 24px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--apple-gray);
+            padding: 64px 0 40px;
+            font-size: 12px;
+            color: #6e6e73;
+        }
+
+        .max-width-lg {
+            max-width: 1024px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar-collapse {
+                background: white;
+                padding: 20px;
+                height: 100vh;
+            }
+            .navbar-apple .nav-link {
+                font-size: 18px;
+                padding: 15px 0 !important;
+            }
+        }
+
+      /*termino do navbar e inicio do carousel*/  
+
+        /* Carousel Aesthetics Improvement */
+        .hero-carousel {
+            background-color: #fff;
+            margin-top: 0;
+        }
+
+        .carousel-item {
+            padding: 80px 0;
+            text-align: center;
+            height: 650px; /* Altura fixa para evitar saltos e ocupar muito espaço */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        /* Fundos diferenciados por produto */
+        .slide-ipad { background-color: #fafafa; }
+        .slide-iphone { background-color: #fbfbfd; }
+        .slide-macbook { background-color: #f5f5f7; }
+
+        .hero-content {
+            z-index: 2;
+            margin-bottom: 40px;
+        }
+
+        .hero-title {
+            font-size: clamp(32px, 6vw, 56px);
+            font-weight: 700;
+            letter-spacing: -0.01em;
+            margin-bottom: 4px;
+            color: var(--apple-black);
+        }
+
+        .hero-subtitle {
+            font-size: clamp(16px, 2vw, 24px);
+            font-weight: 400;
+            color: #424245;
+            margin-bottom: 24px;
+        }
+
+        .btn-apple-primary {
+            background-color: var(--apple-blue);
+            color: #fff;
+            border-radius: 980px;
+            padding: 10px 22px;
+            font-size: 16px;
+            font-weight: 500;
+            border: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-apple-primary:hover {
+            background-color: var(--apple-blue-hover);
+            transform: scale(1.02);
+            color: #fff;
+        }
+
+        .hero-svg-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.08));
+            transition: transform 0.6s ease;
+        }
+
+        .carousel-item.active .hero-svg-container {
+            transform: translateY(0);
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Refined Carousel Indicators */
+        .carousel-indicators {
+            bottom: 30px;
+        }
+        .carousel-indicators [data-bs-target] {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #d2d2d7;
+            margin: 0 8px;
+            border: none;
+            opacity: 0.8;
+            transition: background-color 0.3s ease;
+        }
+
+        .carousel-indicators .active {
+            background-color: #86868b;
+            opacity: 1;
+        }
+
+        /* Polished Controls */
+        .carousel-control-prev-icon, .carousel-control-next-icon {
+            filter: invert(0.5);
+            width: 2rem;
+            height: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--apple-gray);
+            padding: 64px 0 40px;
+            font-size: 12px;
+            color: var(--apple-footer-gray);
+            border-top: 1px solid #d2d2d7;
+        }
+
+        .footer-title { color: var(--apple-black); font-weight: 600; margin-bottom: 12px; font-size: 13px; }
+        .footer-list { list-style: none; padding: 0; }
+        .footer-list li { margin-bottom: 8px; }
+        .footer-list a { color: var(--apple-footer-gray); text-decoration: none; }
+        .footer-list a:hover { color: #000; text-decoration: underline; }
+        .footer-bottom { margin-top: 48px; padding-top: 24px; border-top: 1px solid #d2d2d7; }
+
+        .max-width-lg { max-width: 1024px; }
+
+        @media (max-width: 768px) {
+            .carousel-item { height: 500px; padding: 40px 0; }
+            .hero-svg-container { max-width: 80%; }
+        }
+
+        /* controla o espaçamento entre as páginas carregadas */
+.secao-dinamica {
+  padding: 24px 0;   /* espaço normal entre blocos */
+}
+
+/* evita que o main carregado venha com padding gigante */
+.secao-dinamica > #conteudo {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin: 0 !important;
+}
+
+/* se houver alguma regra a forçar altura de tela */
+.product-grid-section {
+  min-height: auto !important;
+  height: auto !important;
+}
