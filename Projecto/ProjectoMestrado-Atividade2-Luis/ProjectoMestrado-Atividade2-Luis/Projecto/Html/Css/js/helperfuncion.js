@@ -6,8 +6,26 @@ function syncCartCount() {
     if (cartCountEl) cartCountEl.textContent = totalItems;
 }
 
+/* Limpar carrinho quando está na página Index (home) e faz refresh da página */
+function clearCartOnHome() {
+    const pageTitle = document.title;
+    const isHomePage = pageTitle.includes('Apple Store | Projecto PWD') && !pageTitle.includes('Carrinho') && !pageTitle.includes('Detalhes');
+    
+    // Verifica se é um reload (F5, Ctrl+R ou botão refresh)
+    const isPageReload = performance.navigation.type === 1;
+    
+    // So limpa carrinho se está na home E fez refresh
+    if (isHomePage && isPageReload) {
+        localStorage.removeItem('cart');
+        syncCartCount();
+    }
+}
+
 /* Funcao para trocar imagens de produtos usando rounded-cicle|product-main-image */
     document.addEventListener('DOMContentLoaded', function(){
+        // Limpar carrinho se está na home
+        clearCartOnHome();
+        
         // Sincronizar carrinho ao carregar página
         syncCartCount();
         const mainImg = document.querySelector('.product-main-image');
@@ -49,19 +67,66 @@ function syncCartCount() {
         // adicionar ao carrinho e atualizar contador
         const cartBtn = document.querySelector('#addCartBtn');
         cartBtn && cartBtn.addEventListener('click', () => {
-            // Check if capacity is selected
+            // Check if capacity/option is selected
             if (!selectedCapacity) {
-                alert('Por favor, selecione uma capacidade de armazenamento');
+                alert('Por favor, selecione uma opção antes de adicionar ao carrinho');
                 return;
             }
+
+            // Detectar qual página e produto está sendo usado - mac, ipad ou iphone
+            const pageTitle = document.title;
+            const isMac = pageTitle.includes('Mac') || window.location.pathname.includes('Mac') || window.location.pathname.includes('product-detail-Mac');
+            const isIPad = pageTitle.includes('iPad') || window.location.pathname.includes('iPad');
             
-            // Get cart from localStorage or create new one
+            // selecionar o carrinho do localStorage ou criar um novo se não existir
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
             
-            // definir detalhes do produto a adicionar
-            const productImage = mainImg ? mainImg.src : '../imagens/iPhones/iPhone17pro/iphone17pro.png';
-            const productName = 'iPhone 17 pro';
-            const productPrice = selectedCapacity === '256 GB' ? '1349.00' : selectedCapacity === '512 GB' ? '1599.00' : '1849.00';
+            // Definir detalhes do produto baseado na página
+            let productImage, productName, productPrice;
+            
+            if (isMac) {
+                // MacBook Pro - Detalhes (processador/variações)
+                productImage = mainImg ? mainImg.src : '../imagens/Macs/MacBookPro14.png';
+                productName = 'MacBook Pro';
+                switch (selectedCapacity) {
+                    case 'M5':
+                        productPrice = '1849.00';
+                        break;
+                    case 'M4 Pro':
+                        productPrice = '2399.00';
+                        break;
+                    case 'M4 Max':
+                        productPrice = '3899.00';
+                        break;
+                    default:
+                        productPrice = '1849.00';
+                }
+            } else if (isIPad) {
+                // iPad Pro - Detalhes
+                productImage = mainImg ? mainImg.src : '../imagens/iPads/iPadPro13m5.png';
+                productName = 'iPad Pro';
+                switch (selectedCapacity) {
+                    case '256 GB':
+                        productPrice = '1479.00';
+                        break;
+                    case '512 GB':
+                        productPrice = '1729.00';
+                        break;
+                    case '1 TB':
+                        productPrice = '2209.00';
+                        break;
+                    case '2 TB':
+                        productPrice = '2689.00';
+                        break;
+                    default:
+                        productPrice = '1479.00';
+                }
+            } else {
+                // iPhone 17 Pro - Detalhes
+                productImage = mainImg ? mainImg.src : '../imagens/iPhones/iPhone17pro/iphone17pro.png';
+                productName = 'iPhone 17 pro';
+                productPrice = selectedCapacity === '256 GB' ? '1349.00' : selectedCapacity === '512 GB' ? '1599.00' : '1849.00';
+            }
             
             // Criar novo item para o carrinho
             const newItem = {
