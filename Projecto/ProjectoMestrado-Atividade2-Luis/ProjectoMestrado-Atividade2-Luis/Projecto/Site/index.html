@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <title>Início</title>
+  <!-- head compartilhado -->
+  <div id="app-head" hidden></div>
+  <script>
+    // carrega o head antes do resto (simples)
+    fetch("/partial/head.html").then(r => r.text()).then(html => {
+      document.head.insertAdjacentHTML("beforeend", html);
+    });
+  </script>
+</head>
+
+<body>
+  <div id="app-header"></div>
+
+  <main class="container">
+    <section class="card">
+      <h1>Página Principal</h1>
+      <p>Essa é a página principal usando o mesmo layout e estilos.</p>
+    </section>
+  </main>
+
+  <div id="app-footer"></div>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <title>Sobre</title>
+  <script>
+    fetch("/partial/head.html").then(r => r.text()).then(html => {
+      document.head.insertAdjacentHTML("beforeend", html);
+    });
+  </script>
+</head>
+
+<body>
+  <div id="app-header"></div>
+
+  <main class="container">
+    <section class="card">
+      <h1>Sobre</h1>
+      <p>Essa página “herda” header, footer, CSS e JS automaticamente.</p>
+    </section>
+  </main>
+
+  <div id="app-footer"></div>
+</body>
+</html>

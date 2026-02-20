@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Store | Projecto PWD</title>
+    <!-- Bootstrap 5 CSS -->
+     <link href="../Css/css/styleIndex.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+        <!-- presention in external slideshow logic -->
+    <script src="../Css/js/slideShow.js" defer></script>
+    <script src="../Css/js/helperfuncion.js" defer></script>
+
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-apple">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a class="navbar-brand text-dark" href="../pages/Index.html"><i class="bi bi-apple"></i></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link nav-link-apple" href="productsIphones.html">iPhone</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-apple" href="#">iPad</a></li>
+                    <li class="nav-item"><a class="nav-link nav-link-apple" href="#">Mac</a></li>
+                </ul>
+            </div>
+            <div class="d-flex gap-4">
+                <a href="#" class="text-dark"><i class="bi bi-search"></i></a>
+                <a href="cart.html" class="text-dark position-relative">
+                    <i class="bi bi-cart"></i>
+                    <span id="cartCount" class="cart-badge">0</span>
+                </a>
+                <a href="cart.html" class="text-dark"><i class="bi bi-box-arrow-in-right"></i></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SlideShow space -->
+    <div class="container hero-section">
+        <div class="row align-items-center">
+            <div class="col-md-6">
+                <h1 class="hero-title">iPhone</h1>
+                <p class="hero-subtitle">Dês as boas-vindas à mais recente geração do iPhone.</p>
+                <div class="d-flex gap-3">
+                    <a href="#" class="btn-pill">Sabia mais ...</a>
+                    <a href="#" class="btn-pill">Compre iPhone <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 text-center mt-5 mt-md-0">
+                <img id="heroImage" src="../imagens/banner_iphone.png" alt="iPhones" class="img-fluid rounded-4 shadow-lg" style="max-height: 400px; object-fit: cover;">
+                <div class="mt-4">
+                    <span class="hero-dot d-inline-block bg-dark rounded-circle me-1" data-index="0" style="width: 8px; height: 8px;"></span>
+                    <span class="hero-dot d-inline-block bg-secondary rounded-circle me-1" data-index="1" style="width: 8px; height: 8px; opacity: 0.3;"></span>
+                    <span class="hero-dot d-inline-block bg-secondary rounded-circle" data-index="2" style="width: 8px; height: 8px; opacity: 0.3;"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Products space -->
+    <div class="container mt-5">
+        <h2 class="section-title">Conheça as novidades</h2>
+        <div class="row g-4">
+            <!-- iPhone 17 Pro -->
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="../imagens/iPhones/iphone_17_pro.jpg" alt="iPhone 17 Pro" class="product-image rounded-4">
+                    <h3 class="product-title">iPhone 17 Pro</h3>
+                    <p class="product-desc">Design inovador para máximo<br>desempenho e maior duração da bateria.</p>
+                    <p class="product-price">Desde 1349 €</p>
+                    <div class="d-flex justify-content-center gap-2">
+                        <a href="#" class="btn-pill">Sabia mais ...</a>
+                        <a href="product-detail.html" class="btn-pill">Compre <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- iPad Pro -->
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="../imagens/iPads/iPadPro13m5.png" alt="iPad Pro" class="product-image rounded-4">
+                    <h3 class="product-title">iPad Pro</h3>
+                    <p class="product-desc">O mais avançado iPad<br>com tecnologia de última geração.</p>
+                    <p class="product-price">Desde 1479 €</p>
+                    <div class="d-flex justify-content-center gap-2">
+                        <a href="#" class="btn-pill">Sabia mais ...</a>
+                        <a href="#" class="btn-pill">Compre <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- MacBook Pro -->
+            <div class="col-md-4">
+                <div class="product-card">
+                    <img src="../imagens/Macs/MacBookPro14.png" alt="MacBook Pro" class="product-image rounded-4">
+                    <h3 class="product-title">MacBook Pro</h3>
+                    <p class="product-desc">Desempenho brutal e muitas ligações<br>para trabalhar a nível profissional.</p>
+                    <p class="product-price">Desde 1849 €</p>
+                    <div class="d-flex justify-content-center gap-2">
+                        <a href="#" class="btn-pill">Sabia mais ...</a>
+                        <a href="#" class="btn-pill">Compre <i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials space -->
+    <div class="container mt-5 pt-4 mb-5">
+        <div class="row g-4">
+            <!-- Review 1 -->
+            <div class="col-md-4">
+                <div class="review-card">
+                    <img src="../icons/perfil1.png" alt="Luís Silva" class="review-avatar">
+                    <h4 class="review-name">Luís Silva</h4>
+                    <p class="review-text">"O design é impecável"</p>
+                    <div class="stars">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- Review 2 -->
+            <div class="col-md-4">
+                <div class="review-card">
+                    <img src="../icons/perfil3.png" alt="Inês Silva" class="review-avatar">
+                    <h4 class="review-name">Inês Silva</h4>
+                    <p class="review-text">"Simplesmente incrível!"</p>
+                    <div class="stars">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- Review 3 -->
+            <div class="col-md-4">
+                <div class="review-card">
+                    <img src="../icons/perfil2.jpg" alt="Adilson Silva" class="review-avatar">
+                    <h4 class="review-name">Adilson Silva</h4>
+                    <p class="review-text">"A facilidade de uso é fantástica."</p>
+                    <div class="stars">
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <ul class="footer-links">
+                <li><a href="#">Política de privacidade</a></li>
+                <li><a href="#">Termos e Condições</a></li>
+                <li><a href="#">FQAs</a></li>
+                <li><a href="#">contactos</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="../Css/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
