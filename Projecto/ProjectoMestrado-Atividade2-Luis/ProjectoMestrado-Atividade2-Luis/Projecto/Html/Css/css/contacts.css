@@ -1,0 +1,26 @@
+.star-container {
+  font-size: 2rem;
+  cursor: pointer;
+  display: inline-block;
+}
+
+/* Estado padrão: cinza */
+.bi-star,
+.bi-star-fill {
+  color: #ccc;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+/* Estado Ativo/Hover: Amarelo e escala */
+/* Usamos a classe .active para manter a cor após o clique */
+.bi-star-fill,
+.active {
+  color: #ffc107 !important;
+}
+
+.star-container i:hover,
+.active {
+  transform: scale(1.2);
+}

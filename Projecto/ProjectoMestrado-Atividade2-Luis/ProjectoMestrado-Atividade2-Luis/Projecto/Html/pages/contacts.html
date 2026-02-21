@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apple Store | Projecto PWD</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="../Css/css/styleIndex.css" rel="stylesheet" />
+    <link href="../Css/css/contacts.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts: Inter -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <!-- presention in external slideshow logic -->
+    <script src="../Css/js/slideShow.js" defer></script>
+    <script src="../Css/js/helperfuncion.js" defer></script>
+    <script src="../Css/js/animationrating.js" defer></script>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-apple">
+      <div class="container d-flex justify-content-between align-items-center">
+        <a class="navbar-brand text-dark" href="../pages/Index.html"
+          ><i class="bi bi-apple"></i
+        ></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-center"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link nav-link-apple" href="productsIphones.html"
+                >iPhone</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-apple" href="#">iPad</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-apple" href="#">Mac</a>
+            </li>
+          </ul>
+        </div>
+        <div class="d-flex gap-4">
+          <a href="#" class="text-dark"><i class="bi bi-search"></i></a>
+          <a href="cart.html" class="text-dark position-relative">
+            <i class="bi bi-cart"></i>
+            <span id="cartCount" class="cart-badge">0</span>
+          </a>
+          <a href="cart.html" class="text-dark"
+            ><i class="bi bi-box-arrow-in-right"></i
+          ></a>
+        </div>
+      </div>
+    </nav>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <h2 class="col-8 col-md-12 mx-auto text-center titulo mb-4">
+          Contactos
+        </h2>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-6 col-lg-4 text-center">
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="inputNome"
+              placeholder="Nome*"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <input
+              type="email"
+              class="form-control"
+              id="inputEmail"
+              placeholder="Endereço de Email*"
+              required
+            />
+          </div>
+
+          <div class="mb-3">
+            <select
+              class="form-select"
+              aria-label="Selecione o tipo de Feedback"
+            >
+              <option selected disabled>Selecione o tipo de Feedback</option>
+              <option value="1">iPhone</option>
+              <option value="2">iPad</option>
+              <option value="3">Mac</option>
+              <option value="4">Plataforma</option>
+              <option value="5">Outro</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <textarea
+              class="form-control"
+              id="textoComentarios"
+              placeholder="Comentários*"
+              rows="5"
+              required
+            ></textarea>
+          </div>
+          <div class="mb-3">
+            <div id="star-rating" class="star-container">
+              <i class="bi bi-star" data-index="0"></i>
+              <i class="bi bi-star" data-index="1"></i>
+              <i class="bi bi-star" data-index="2"></i>
+              <i class="bi bi-star" data-index="3"></i>
+              <i class="bi bi-star" data-index="4"></i>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-outline-primary mt-2">
+            Enviar Feedback <i class="bi bi-arrow-right-short"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <ul class="footer-links">
+          <li><a href="../pages/polity.html">Política de privacidade</a></li>
+          <li>
+            <a href="../pages/termsconditions.html">Termos e Condições</a>
+          </li>
+          <li><a href="../pages/fqa.html">FQAs</a></li>
+          <li><a href="../pages/contacts.html">contactos</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <script src="../Css/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
