@@ -28,7 +28,50 @@ function clearCartOnHome() {
         
         // Sincronizar carrinho ao carregar página
         syncCartCount();
+
+        // If product-detail page received `name` and `images` via query params, initialize the page
+        const params = new URLSearchParams(window.location.search);
+        const imagesParam = params.get('images');
+        const nameParam = params.get('name');
         const mainImg = document.querySelector('.product-main-image');
+
+        if (nameParam) {
+            // set page and product title when provided
+            const h2 = document.querySelector('h2');
+            const titleEl = document.querySelector('.section-title');
+            if (h2) h2.textContent = decodeURIComponent(nameParam);
+            if (titleEl) titleEl.textContent = decodeURIComponent(nameParam);
+            document.title = decodeURIComponent(nameParam) + ' - Apple Store | Projecto PWD';
+        }
+
+        if (imagesParam && mainImg) {
+            const imgs = imagesParam.split('|');
+            // set main image to first
+            mainImg.src = imgs[0];
+
+            // find the color-dots container (the sibling div after the image)
+            let dotsContainer = null;
+            const imgParent = mainImg.parentElement;
+            if (imgParent) {
+                dotsContainer = imgParent.querySelector('.mt-3.d-flex') || imgParent.querySelector('div');
+            }
+
+            // remove existing dots and build new ones
+            if (dotsContainer) {
+                dotsContainer.innerHTML = '';
+                const bgClasses = ['bg-secondary','bg-warning','bg-dark','bg-info','bg-light','bg-primary'];
+                imgs.forEach((p,i)=>{
+                    const span = document.createElement('span');
+                    span.className = `color-dot d-inline-block ${bgClasses[i % bgClasses.length]} rounded-circle`;
+                    span.setAttribute('data-img', p);
+                    span.style.width = '12px';
+                    span.style.height = '12px';
+                    span.style.cursor = 'pointer';
+                    dotsContainer.appendChild(span);
+                });
+            }
+        }
+
         const dots = document.querySelectorAll('.color-dot');
         let selectedColor = null;
         let selectedColorName = 'Indisponível';
@@ -47,7 +90,8 @@ function clearCartOnHome() {
                     'iphone17pro.png': 'Cinzento'
                 };
                 selectedColor = img;
-                selectedColorName = colorMap[img.split('/').pop()] || 'Laranja Cósmico';
+                const fileName = img.split('/').pop();
+                selectedColorName = colorMap[fileName] || fileName.split('.')[0];
             });
         });
 

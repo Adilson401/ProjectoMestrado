@@ -96,7 +96,7 @@ body {
 @media (min-width: 768px) {
   .section-title {
     font-size: 40px;
-    text-align: left; /* Alinha à esquerda no desktop */
+    text-align: left; 
   }
 }
 
@@ -141,16 +141,58 @@ body {
 
 /*desktop*/
 .product-image {
-  /* slightly larger images for product listings */
-  height: 240px;
-  object-fit: contain;
-  margin-bottom: 20px;
+  /* center and constrain product images while keeping aspect ratio */
+  display: block;
+  margin: 0 auto 20px;
+  width: 100%;
+  max-width: 420px; 
+  height: 300px; 
+  object-fit: cover; 
+}
+
+/*  Specific styling for tall / narrow product images (e.g., Mac Pro chassis)
+   Keeps the full image visible without hard cropping and centers it in the card */
+.product-image--tall {
+  display: block;
+  margin: 0 auto 20px;
+  width: auto;           
+  max-width: 220px;     
+  height: 300px;         
+  object-fit: contain;   
+  background: #ffffff;   
+  padding: 6px;
 }
 
 /* Mobile */
 @media (max-width: 767.98px) {
   .product-image {
-    height: 200px; /* Reduzi um pouco para mobile para não ocupar a tela toda */
+    max-width: 280px;
+    height: 200px; 
+    object-fit: cover;
+  }
+
+  .product-image--tall {
+    max-width: 140px;
+    height: 200px;
+    object-fit: contain;
+  }
+}
+
+/* Desktop-specific overrides to match visual model: slightly smaller images and more top spacing */
+@media (min-width: 768px) {
+  .product-card {
+    padding-top: 36px; /* more breathing room above images */
+  }
+
+  .product-image {
+    max-width: 260px; /* narrower than previous to match reference */
+    height: 220px;
+    object-fit: contain; /* show full product, avoid cropping */
+  }
+
+  .product-image--tall {
+    max-width: 160px;
+    height: 220px;
     object-fit: contain;
   }
 }
