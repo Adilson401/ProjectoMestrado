@@ -29,48 +29,142 @@
   <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-apple">
-      <div class="container d-flex justify-content-between align-items-center">
-        <a class="navbar-brand text-dark" href="../pages/Index.html"
-          ><i class="bi bi-apple"></i
-        ></a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+      <div class="container d-flex align-items-center">
+        <a class="navbar-brand text-dark" href="../pages/Index.html">
+          <i class="bi bi-apple"></i>
+        </a>
+
+        <!--Offcanvas-->
         <div
-          class="collapse navbar-collapse justify-content-center"
-          id="navbarNav"
+          class="offcanvas offcanvas-start show w-100"
+          tabindex="-1"
+          id="offcanvasNavbar"
         >
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link nav-link-apple" href="productsIphones.html"
-                >iPhone</a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-apple" href="#">iPad</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-apple" href="#">Mac</a>
-            </li>
-          </ul>
+          <div class="offcanvas-header border-bottom border-2 border-black">
+            <h5 class="offcanvas-title">Menu</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <div class="offcanvas-body d-flex flex-column">
+            <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-apple"
+                  href="../pages/productsIphones.html"
+                  >iPhone</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-apple"
+                  href="../pages/productsMacs.html"
+                  >iPad</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-apple"
+                  href="../pages/productsMacs.html"
+                  >Mac</a
+                >
+              </li>
+            </ul>
+
+            <div class="mt-auto border-top pt-3 d-lg-none">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a
+                    class="nav-link d-flex align-items-center gap-2 text-danger"
+                    href="../pages/login.html"
+                  >
+                    <i class="bi bi-box-arrow-in-right"></i> Terminar Sessão
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="d-flex gap-4">
-          <a href="#" class="text-dark"><i class="bi bi-search"></i></a>
-          <a href="cart.html" class="text-dark position-relative">
+
+        <div class="d-flex gap-4 align-items-center ms-auto">
+          <div class="position-relative" id="search-wrapper">
+            <div id="search-icon-wrapper">
+              <a
+                href="javascript:void(0)"
+                class="text-dark"
+                onclick="toggleSearch()"
+              >
+                <i class="bi bi-search"></i>
+              </a>
+            </div>
+
+            <div id="search-active-wrapper" class="d-none search-floating-box">
+              <div class="d-flex align-items-center border-bottom pb-2 mb-2">
+                <input
+                  type="text"
+                  id="inputFocus"
+                  class="form-control form-control-sm border-0 shadow-none"
+                  placeholder="Pesquisar..."
+                  onkeyup="filterSearch()"
+                />
+                <button class="btn btn-sm" onclick="toggleSearch()">
+                  <i class="bi bi-x"></i>
+                </button>
+              </div>
+
+              <ul id="searchResults" class="list-unstyled mb-0">
+                <li class="category-item py-1">
+                  <a
+                    href="../pages/productsIphones.html"
+                    class="text-decoration-none text-dark fw-bold"
+                    >iPhone</a
+                  >
+                </li>
+                <li class="category-item py-1">
+                  <a
+                    href="../pages/productsIpads.html"
+                    class="text-decoration-none text-dark fw-bold"
+                    >iPad</a
+                  >
+                </li>
+                <li class="category-item py-1">
+                  <a
+                    href="../pages/productsIpads.html"
+                    class="text-decoration-none text-dark fw-bold"
+                    >Mac</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <a href="../pages/cart.html" class="text-dark position-relative">
             <i class="bi bi-cart"></i>
             <span id="cartCount" class="cart-badge">0</span>
           </a>
-          <a href="cart.html" class="text-dark"
-            ><i class="bi bi-box-arrow-in-right"></i
-          ></a>
+
+          <a href="../pages/login.html" class="text-dark d-none d-lg-block">
+            <i class="bi bi-person"></i>
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
         </div>
       </div>
     </nav>
+
     <div class="container mt-5">
       <div class="row justify-content-center">
         <h2 class="col-8 col-md-12 mx-auto text-center titulo mb-4">
@@ -80,62 +174,76 @@
 
       <div class="row justify-content-center">
         <div class="col-12 col-md-6 col-lg-4 text-center">
-          <div class="mb-3">
-            <input
-              type="text"
-              class="form-control"
-              id="inputNome"
-              placeholder="Nome*"
-              required
-            />
-          </div>
-
-          <div class="mb-3">
-            <input
-              type="email"
-              class="form-control"
-              id="inputEmail"
-              placeholder="Endereço de Email*"
-              required
-            />
-          </div>
-
-          <div class="mb-3">
-            <select
-              class="form-select"
-              aria-label="Selecione o tipo de Feedback"
-            >
-              <option selected disabled>Selecione o tipo de Feedback</option>
-              <option value="1">iPhone</option>
-              <option value="2">iPad</option>
-              <option value="3">Mac</option>
-              <option value="4">Plataforma</option>
-              <option value="5">Outro</option>
-            </select>
-          </div>
-
-          <div class="mb-3">
-            <textarea
-              class="form-control"
-              id="textoComentarios"
-              placeholder="Comentários*"
-              rows="5"
-              required
-            ></textarea>
-          </div>
-          <div class="mb-3">
-            <div id="star-rating" class="star-container">
-              <i class="bi bi-star" data-index="0"></i>
-              <i class="bi bi-star" data-index="1"></i>
-              <i class="bi bi-star" data-index="2"></i>
-              <i class="bi bi-star" data-index="3"></i>
-              <i class="bi bi-star" data-index="4"></i>
+          <form id="Register" class="row g-3 needs-validation" novalidate>
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="inputNome"
+                placeholder="Nome*"
+                required
+              />
+              <div class="invalid-feedback text-start">
+                Por favor, insira um Nome válido.
+              </div>
             </div>
-          </div>
 
-          <button type="submit" class="btn btn-outline-primary mt-2">
-            Enviar Feedback <i class="bi bi-arrow-right-short"></i>
-          </button>
+            <div class="mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="inputEmail"
+                placeholder="Endereço de Email*"
+                required
+              />
+              <div class="invalid-feedback text-start">
+                Por favor, insira um email válido.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <select class="form-select" id="inputFeedbackType" required>
+                <option selected disabled value="">
+                  Selecione o tipo de Feedback
+                </option>
+                <option value="iPhone">iPhone</option>
+                <option value="iPad">iPad</option>
+                <option value="Mac">Mac</option>
+                <option value="Plataforma">Plataforma</option>
+                <option value="Outro">Outro</option>
+              </select>
+              <div class="invalid-feedback text-start">
+                Por favor, selecione um tipo de Feedback.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <textarea
+                class="form-control"
+                id="textoComentarios"
+                placeholder="Comentários*"
+                rows="5"
+                required
+              ></textarea>
+              <div class="invalid-feedback text-start">
+                Por favor, insira seus comentários.
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <div id="star-rating" class="star-container">
+                <i class="bi bi-star" data-index="1"></i>
+                <i class="bi bi-star" data-index="2"></i>
+                <i class="bi bi-star" data-index="3"></i>
+                <i class="bi bi-star" data-index="4"></i>
+                <i class="bi bi-star" data-index="5"></i>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-outline-primary mt-2">
+              Enviar Feedback <i class="bi bi-arrow-right-short"></i>
+            </button>
+          </form>
         </div>
       </div>
     </div>

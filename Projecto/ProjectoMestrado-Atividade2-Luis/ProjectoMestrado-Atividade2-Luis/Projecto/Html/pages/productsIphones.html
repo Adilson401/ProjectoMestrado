@@ -24,15 +24,20 @@
     <script src="../Css/js/index.js" defer></script>
   </head>
   <body>
-    <!-- Navbar (menu) -->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-apple">
       <div class="container d-flex align-items-center">
         <a class="navbar-brand text-dark" href="../pages/Index.html">
           <i class="bi bi-apple"></i>
         </a>
 
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
-          <div class="offcanvas-header border-bottom">
+        <!--Offcanvas-->
+        <div
+          class="offcanvas offcanvas-start show w-100"
+          tabindex="-1"
+          id="offcanvasNavbar"
+        >
+          <div class="offcanvas-header border-bottom border-2 border-black">
             <h5 class="offcanvas-title">Menu</h5>
             <button
               type="button"
@@ -42,7 +47,7 @@
             ></button>
           </div>
 
-          <div class="offcanvas-body">
+          <div class="offcanvas-body d-flex flex-column">
             <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
               <li class="nav-item">
                 <a
@@ -65,17 +70,20 @@
                   >Mac</a
                 >
               </li>
-
-              <hr class="d-lg-none" />
-              <li class="nav-item d-lg-none">
-                <a
-                  class="nav-link d-flex align-items-center gap-2"
-                  href="../pages/cart.html"
-                >
-                  <i class="bi bi-box-arrow-in-right"></i> Terminar Sessão
-                </a>
-              </li>
             </ul>
+
+            <div class="mt-auto border-top pt-3 d-lg-none">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a
+                    class="nav-link d-flex align-items-center gap-2 text-danger"
+                    href="../pages/login.html"
+                  >
+                    <i class="bi bi-box-arrow-in-right"></i> Terminar Sessão
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -141,10 +149,12 @@
           </a>
 
           <button
-            class="navbar-toggler border-0 ms-2 d-lg-none"
+            class="navbar-toggler"
             type="button"
             data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+            aria-label="Toggle navigation"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
