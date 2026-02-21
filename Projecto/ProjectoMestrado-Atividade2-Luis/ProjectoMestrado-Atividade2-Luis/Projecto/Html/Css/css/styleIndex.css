@@ -1,0 +1,468 @@
+body {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  color: #1d1d1f;
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Navbar */
+.navbar-apple {
+  background-color: #e8e8ed;
+  height: 48px;
+  font-size: 12px;
+}
+.nav-link-apple {
+  color: #1d1d1f;
+  font-weight: 600;
+  padding: 0 20px !important;
+}
+.nav-link-apple:hover {
+  color: #000;
+}
+
+/*offcanvas*/
+
+/* Hero Section */
+.hero-section {
+  padding: 80px 0 40px;
+}
+/* Remove fundo branco, bordas e sombras das imagens do slideshow */
+.hero-section img,
+#heroImage {
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0;
+  box-shadow: none !important;
+  object-fit: contain;
+}
+/* main image on product-detail page reduced size */
+.product-main-image {
+  max-width: 80%;
+  max-height: 400px;
+  height: auto;
+}
+.hero-title {
+  font-size: 56px;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  margin-bottom: 10px;
+}
+.hero-subtitle {
+  font-size: 28px;
+  color: #86868b;
+  font-weight: 400;
+  margin-bottom: 30px;
+}
+
+/* Buttons */
+.btn-pill {
+  border: 1px solid transparent;
+  border-left: 1px solid #0066cc;
+  border-right: 1px solid #0066cc;
+  border-radius: 20px;
+  color: #0066cc;
+  padding: 6px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s;
+  background: transparent;
+}
+/* cor do botão ao passar o rato nos botões */
+.btn-pill:hover {
+  background-color: rgba(250, 119, 4, 0.745);
+  color: white;
+  cursor: pointer;
+}
+
+/* --- Section Title Responsivo --- */
+
+/*Mobile*/
+.section-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* 2.  (Telas ≥ 768px): 28px */
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 40px;
+    text-align: left; 
+  }
+}
+
+@media (max-width: 767.98px) {
+  .mobile-scroll-row {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem;
+
+    /* 1. Ativa o snap e garante que o conteúdo possa ser centralizado */
+    scroll-snap-type: x mandatory;
+    justify-content: flex-start; /* Mantém o alinhamento inicial para permitir scroll */
+  }
+
+  .mobile-scroll-row .col-12 {
+    /* 2. Define a largura do card */
+    flex: 0 0 85%;
+
+    /* 3. Centraliza o card no snap */
+    scroll-snap-align: center;
+
+    /* 4. Adiciona margens laterais para o card não colar nas bordas */
+    margin-left: 7.5%;
+  }
+
+  /* Garante que o último card também fique centralizado adicionando um respiro à direita */
+  .mobile-scroll-row .col-12:last-child {
+    margin-right: 7.5%;
+  }
+
+  .mobile-scroll-row::-webkit-scrollbar {
+    display: none;
+  }
+}
+/* Product Cards */
+.product-card {
+  text-align: center;
+  padding: 20px;
+}
+
+/*desktop*/
+.product-image {
+  /* center and constrain product images while keeping aspect ratio */
+  display: block;
+  margin: 0 auto 20px;
+  width: 100%;
+  max-width: 420px; 
+  height: 300px; 
+  object-fit: cover; 
+}
+
+/*  Specific styling for tall / narrow product images (e.g., Mac Pro chassis)
+   Keeps the full image visible without hard cropping and centers it in the card */
+.product-image--tall {
+  display: block;
+  margin: 0 auto 20px;
+  width: auto;           
+  max-width: 220px;     
+  height: 300px;         
+  object-fit: contain;   
+  background: #ffffff;   
+  padding: 6px;
+}
+
+/* Mobile */
+@media (max-width: 767.98px) {
+  .product-image {
+    max-width: 280px;
+    height: 200px; 
+    object-fit: cover;
+  }
+
+  .product-image--tall {
+    max-width: 140px;
+    height: 200px;
+    object-fit: contain;
+  }
+}
+
+/* Desktop-specific overrides to match visual model: slightly smaller images and more top spacing */
+@media (min-width: 768px) {
+  .product-card {
+    padding-top: 36px; /* more breathing room above images */
+  }
+
+  .product-image {
+    max-width: 260px; /* narrower than previous to match reference */
+    height: 220px;
+    object-fit: contain; /* show full product, avoid cropping */
+  }
+
+  .product-image--tall {
+    max-width: 160px;
+    height: 220px;
+    object-fit: contain;
+  }
+}
+
+.product-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.product-desc {
+  font-size: 14px;
+  color: #1d1d1f;
+  margin-bottom: 10px;
+  min-height: 42px;
+  font-weight: 600;
+}
+.product-price {
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* Review Cards */
+.review-card {
+  background-color: #e8e8ed;
+  border-radius: 25px; /* Bordas mais suaves como na sua imagem */
+  padding: 40px 30px;
+  text-align: center;
+  height: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* Efeito de brilho suave (ajuste a cor se desejar) */
+  box-shadow:
+    0 0 20px rgba(0, 0, 0, 0.1),
+    0 0 40px rgba(255, 255, 255, 0.5);
+
+  /* Transição suave para o hover */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Efeito quando passa o mouse */
+.review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.review-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  mix-blend-mode: multiply;
+}
+.review-name {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.review-text {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+.stars {
+  color: #fff;
+  font-size: 24px;
+}
+
+/* Estado inicial das estrelas */
+/*.stars i {
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+} */
+.stars i {
+  cursor: pointer;
+  color: #fff; /* Cor apagada padrão */
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+  font-size: 24px;
+}
+
+/* Estilo para quando a estrela for selecionada */
+.stars i.active {
+  color: #ffc107; /* Dourado */
+  text-shadow: 0 0 10px rgba(255, 193, 7, 0.4);
+}
+
+/* Animação de "pulo" ao clicar */
+.stars i.pulse {
+  animation: starPop 0.4s ease-out;
+}
+
+@keyframes starPop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Efeito visual ao passar o mouse (hover) */
+.stars i:hover {
+  transform: scale(1.2);
+  color: #ffdb70;
+}
+
+/* Footer */
+.footer {
+  background-color: #f5f5f7;
+  padding: 20px 0;
+  font-size: 12px;
+  color: #86868b;
+  margin-top: 60px;
+}
+.footer-links {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+.footer-links li {
+  position: relative;
+  flex: 1;
+  text-align: center;
+}
+.footer-links li:not(:last-child)::after {
+  content: "|";
+  position: absolute;
+  right: 0;
+  color: #d2d2d7;
+}
+.footer-links a {
+  color: #515154;
+  text-decoration: none;
+  font-weight: 600;
+}
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* cart icon badge in menu */
+.cart-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background-color: rgb(13, 13, 13);
+  color: white;
+  font-size: 10px;
+  line-height: 1;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cart page styles */
+.cart-table {
+  background-color: #f5f5f5;
+}
+.cart-table thead {
+  background-color: #d3d3d3;
+  font-weight: 700;
+}
+.cart-table td {
+  vertical-align: middle;
+  padding: 15px;
+  border: none;
+}
+.product-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.product-info img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+.product-details {
+  text-align: left;
+}
+.product-details h5 {
+  margin: 0;
+  font-weight: 600;
+}
+.product-details p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+.summary-box {
+  background-color: #e8e8e8;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+.summary-row.total {
+  font-weight: 700;
+  font-size: 1.1rem;
+  border-top: 1px solid #ccc;
+  padding-top: 12px;
+}
+.btn-payment {
+  padding: 10px 30px;
+  font-weight: 600;
+  border-radius: 25px;
+}
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+.quantity-selector button {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 1px solid #0066cc;
+  background-color: white;
+  color: #0066cc;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.quantity-selector button:hover {
+  background-color: #0066cc;
+  color: white;
+}
+.quantity-selector input {
+  width: 40px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+}
+.product-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+/* Footer */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.footer {
+  margin-top: auto;
+}
