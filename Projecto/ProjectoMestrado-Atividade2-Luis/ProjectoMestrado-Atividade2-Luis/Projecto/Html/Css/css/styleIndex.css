@@ -10,7 +10,7 @@ body {
 }
 
 /* Navbar */
-.navbar-apple {
+/*.navbar-apple {
   background-color: #e8e8ed;
   height: 48px;
   font-size: 12px;
@@ -22,9 +22,47 @@ body {
 }
 .nav-link-apple:hover {
   color: #000;
+}*/
+
+/* Ajuste na Navbar principal */
+.navbar-apple {
+  background-color: #e8e8ed;
+  /*height: 48px;*/
+  min-height: 48px;
+  font-size: 12px;
+  padding: 0;
 }
 
-/*offcanvas*/
+/* Links da navegação */
+.nav-link-apple {
+  color: #1d1d1f;
+  font-weight: 600;
+  padding: 0 20px !important;
+  /*transition: opacity 0.3s ease;*/
+}
+
+.nav-link-apple:hover {
+  color: #000;
+  /*opacity: 0.7;*/
+}
+
+/*  Offcanvas (Mobile) */
+@media (max-width: 991.98px) {
+  .offcanvas {
+    background-color: #e8e8ed;
+  }
+
+  .nav-link-apple {
+    font-size: 24px;
+    padding: 15px 0 !important;
+    border-bottom: 1px solid #000;
+  }
+
+  .offcanvas-header {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}
 
 /* Hero Section */
 .hero-section {
@@ -99,7 +137,7 @@ body {
     text-align: left; 
   }
 }
-
+/*scroll horizontal*/
 @media (max-width: 767.98px) {
   .mobile-scroll-row {
     display: flex !important;

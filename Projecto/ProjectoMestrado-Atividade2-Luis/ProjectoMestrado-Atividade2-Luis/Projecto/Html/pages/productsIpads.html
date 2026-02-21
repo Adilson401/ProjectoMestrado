@@ -1,163 +1,336 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>iPad - Apple Store | Projecto PWD</title>
     <!-- Bootstrap 5 CSS -->
-    <link href="../Css/css/styleIndex.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../Css/css/styleIndex.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <!-- Google Fonts: Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
     <script src="../Css/js/helperfuncion.js" defer></script>
-</head>
-<body>
-
-    <!-- Navbar (menu) -->
+    <script src="../Css/js/index.js" defer></script>
+  </head>
+  <body>
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-apple">
-        <div class="container d-flex justify-content-between align-items-center">
-            <a class="navbar-brand text-dark" href="Index.html"><i class="bi bi-apple"></i></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link nav-link-apple" href="productsIphones.html">iPhone</a></li>
-                    <li class="nav-item"><a class="nav-link nav-link-apple" href="productsIpads.html">iPad</a></li>
-                    <li class="nav-item"><a class="nav-link nav-link-apple" href="productsMacs.html">Mac</a></li>
-                </ul>
+      <div class="container d-flex align-items-center">
+        <a class="navbar-brand text-dark" href="../pages/Index.html">
+          <i class="bi bi-apple"></i>
+        </a>
+
+        <!--Offcanvas-->
+        <div
+          class="offcanvas offcanvas-start show w-100"
+          tabindex="-1"
+          id="offcanvasNavbar"
+        >
+          <div class="offcanvas-header border-bottom border-2 border-black">
+            <h5 class="offcanvas-title">Menu</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <div class="offcanvas-body d-flex flex-column">
+            <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-apple"
+                  href="../pages/productsIphones.html"
+                  >iPhone</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-apple"
+                  href="../pages/productsMacs.html"
+                  >iPad</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-apple"
+                  href="../pages/productsMacs.html"
+                  >Mac</a
+                >
+              </li>
+            </ul>
+
+            <div class="mt-auto border-top pt-3 d-lg-none">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a
+                    class="nav-link d-flex align-items-center gap-2 text-danger"
+                    href="../pages/login.html"
+                  >
+                    <i class="bi bi-box-arrow-in-right"></i> Terminar Sessão
+                  </a>
+                </li>
+              </ul>
             </div>
-            <div class="d-flex gap-4">
-                <a href="#" class="text-dark"><i class="bi bi-search"></i></a>
-                <a href="cart.html" class="text-dark position-relative">
-                    <i class="bi bi-cart"></i>
-                    <span id="cartCount" class="cart-badge">0</span>
-                </a>
-                <a href="cart.html" class="text-dark"><i class="bi bi-box-arrow-in-right"></i></a>
-            </div>
+          </div>
         </div>
+
+        <div class="d-flex gap-4 align-items-center ms-auto">
+          <div class="position-relative" id="search-wrapper">
+            <div id="search-icon-wrapper">
+              <a
+                href="javascript:void(0)"
+                class="text-dark"
+                onclick="toggleSearch()"
+              >
+                <i class="bi bi-search"></i>
+              </a>
+            </div>
+
+            <div id="search-active-wrapper" class="d-none search-floating-box">
+              <div class="d-flex align-items-center border-bottom pb-2 mb-2">
+                <input
+                  type="text"
+                  id="inputFocus"
+                  class="form-control form-control-sm border-0 shadow-none"
+                  placeholder="Pesquisar..."
+                  onkeyup="filterSearch()"
+                />
+                <button class="btn btn-sm" onclick="toggleSearch()">
+                  <i class="bi bi-x"></i>
+                </button>
+              </div>
+
+              <ul id="searchResults" class="list-unstyled mb-0">
+                <li class="category-item py-1">
+                  <a
+                    href="../pages/productsIphones.html"
+                    class="text-decoration-none text-dark fw-bold"
+                    >iPhone</a
+                  >
+                </li>
+                <li class="category-item py-1">
+                  <a
+                    href="../pages/productsIpads.html"
+                    class="text-decoration-none text-dark fw-bold"
+                    >iPad</a
+                  >
+                </li>
+                <li class="category-item py-1">
+                  <a
+                    href="../pages/productsIpads.html"
+                    class="text-decoration-none text-dark fw-bold"
+                    >Mac</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <a href="../pages/cart.html" class="text-dark position-relative">
+            <i class="bi bi-cart"></i>
+            <span id="cartCount" class="cart-badge">0</span>
+          </a>
+
+          <a href="../pages/login.html" class="text-dark d-none d-lg-block">
+            <i class="bi bi-box-arrow-in-right"></i>
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
     </nav>
 
     <!-- Products grid -->
     <div class="container mt-5">
-        <h2 class="section-title">iPad</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="product-card">
-                    <img src="../imagens/iPads/iPadPro13m5.png" alt="iPad Pro (M5)" class="product-image rounded-4">
-                    <h3 class="product-title">iPad Pro (M5)</h3>
-                    <div class="d-flex justify-content-center gap-2 mt-3">
-                        <a href="#" class="btn-pill">Sabia mais ...</a>
-                        <a href="product-detail-iPad.html" class="btn-pill">Compre <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div>
+      <h2 class="section-title">iPad</h2>
+      <div class="row g-4 mb-4 mobile-scroll-row">
+        <div class="col-12 col-md-4">
+          <div class="product-card mb-4">
+            <img
+              src="../imagens/iPads/iPadPro13m5.png"
+              alt="iPad Pro (M5)"
+              class="product-image rounded-4"
+            />
+            <h3 class="product-title">iPad Pro (M5)</h3>
+            <div class="d-flex justify-content-center gap-2 mt-3">
+              <a href="#" class="btn-pill">Sabia mais ...</a>
+              <a href="product-detail-iPad.html" class="btn-pill"
+                >Compre <i class="bi bi-arrow-right"></i
+              ></a>
             </div>
-            <div class="col-md-4">
-                <div class="product-card">
-                    <img src="../imagens/iPads/ipadairm3.jpg" alt="iPad Air (M3)" class="product-image rounded-4">
-                    <h3 class="product-title">iPad Air (M3)</h3>
-                    <div class="d-flex justify-content-center gap-2 mt-3">
-                        <a href="#" class="btn-pill">Sabia mais ...</a>
-                        <a href="product-detail-iPad.html" class="btn-pill">Compre <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="product-card">
-                    <img src="../imagens/iPads/iPadA16.png" alt="iPad (A16)" class="product-image rounded-4">
-                    <h3 class="product-title">iPad (A16)</h3>
-                    <div class="d-flex justify-content-center gap-2 mt-3">
-                        <a href="#" class="btn-pill">Sabia mais ...</a>
-                        <a href="product-detail-iPad.html" class="btn-pill">Compre <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="product-card">
-                    <img src="../imagens/iPads/ipadminia17pro.jpg" alt="iPad mini (A17 Pro)" class="product-image rounded-4">
-                    <h3 class="product-title">iPad mini (A17 Pro)</h3>
-                    <div class="d-flex justify-content-center gap-2 mt-3">
-                        <a href="#" class="btn-pill">Sabia mais ...</a>
-                        <a href="product-detail-iPad.html" class="btn-pill">Compre <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="product-card">
-                    <img src="../imagens/iPads/ipadprom4.jpg" alt="iPad Pro (M4)" class="product-image rounded-4">
-                    <h3 class="product-title">iPad Pro (M4)</h3>
-                    <div class="d-flex justify-content-center gap-2 mt-3">
-                        <a href="#" class="btn-pill">Sabia mais ...</a>
-                        <a href="product-detail-iPad.html" class="btn-pill">Compre <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="product-card">
-                    <img src="../imagens/iPads/iPadPro12,9.png" alt="iPad Pro (6.ª geração)" class="product-image rounded-4">
-                    <h3 class="product-title">iPad Pro (6.ª geração)</h3>
-                    <div class="d-flex justify-content-center gap-2 mt-3">
-                        <a href="#" class="btn-pill">Sabia mais ...</a>
-                        <a href="product-detail-iPad.html" class="btn-pill">Compre <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="product-card">
-                    <img src="../imagens/iPads/ipadair13m3.png" alt="iPad Air (M2)" class="product-image rounded-4">
-                    <h3 class="product-title">iPad Air (M2)</h3>
-                    <div class="d-flex justify-content-center gap-2 mt-3">
-                        <a href="#" class="btn-pill">Sabia mais ...</a>
-                        <a href="product-detail-iPad.html" class="btn-pill">Compre <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="product-card">
-                    <img src="../imagens/iPads/ipadpro10.5.jpg" alt="iPad Pro 10.5" class="product-image rounded-4">
-                    <h3 class="product-title">iPad Pro 10.5</h3>
-                    <div class="d-flex justify-content-center gap-2 mt-3">
-                        <a href="#" class="btn-pill">Sabia mais ...</a>
-                        <a href="product-detail-iPad.html" class="btn-pill">Compre <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="product-card">
-                    <img src="../imagens/iPads/ipadair2.jpg" alt="iPad Air 2" class="product-image rounded-4">
-                    <h3 class="product-title">iPad Air 2</h3>
-                    <div class="d-flex justify-content-center gap-2 mt-3">
-                        <a href="#" class="btn-pill">Sabia mais ...</a>
-                        <a href="product-detail-iPad.html" class="btn-pill">Compre <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                </div>
-            </div>
-
+          </div>
         </div>
-    </div>
+        <div class="col-12 col-md-4">
+          <div class="product-card">
+            <img
+              src="../imagens/iPads/ipadairm3.jpg"
+              alt="iPad Air (M3)"
+              class="product-image rounded-4"
+            />
+            <h3 class="product-title">iPad Air (M3)</h3>
+            <div class="d-flex justify-content-center gap-2 mt-3">
+              <a href="#" class="btn-pill">Sabia mais ...</a>
+              <a href="product-detail-iPad.html" class="btn-pill"
+                >Compre <i class="bi bi-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="product-card">
+            <img
+              src="../imagens/iPads/iPadA16.png"
+              alt="iPad (A16)"
+              class="product-image rounded-4"
+            />
+            <h3 class="product-title">iPad (A16)</h3>
+            <div class="d-flex justify-content-center gap-2 mt-3">
+              <a href="#" class="btn-pill">Sabia mais ...</a>
+              <a href="product-detail-iPad.html" class="btn-pill"
+                >Compre <i class="bi bi-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
 
-    
+        <div class="col-12 col-md-4">
+          <div class="product-card">
+            <img
+              src="../imagens/iPads/ipadminia17pro.jpg"
+              alt="iPad mini (A17 Pro)"
+              class="product-image rounded-4"
+            />
+            <h3 class="product-title">iPad mini (A17 Pro)</h3>
+            <div class="d-flex justify-content-center gap-2 mt-3">
+              <a href="#" class="btn-pill">Sabia mais ...</a>
+              <a href="product-detail-iPad.html" class="btn-pill"
+                >Compre <i class="bi bi-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <div class="product-card">
+            <img
+              src="../imagens/iPads/ipadprom4.jpg"
+              alt="iPad Pro (M4)"
+              class="product-image rounded-4"
+            />
+            <h3 class="product-title">iPad Pro (M4)</h3>
+            <div class="d-flex justify-content-center gap-2 mt-3">
+              <a href="#" class="btn-pill">Sabia mais ...</a>
+              <a href="product-detail-iPad.html" class="btn-pill"
+                >Compre <i class="bi bi-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <div class="product-card">
+            <img
+              src="../imagens/iPads/iPadPro12,9.png"
+              alt="iPad Pro (6.ª geração)"
+              class="product-image rounded-4"
+            />
+            <h3 class="product-title">iPad Pro (6.ª geração)</h3>
+            <div class="d-flex justify-content-center gap-2 mt-3">
+              <a href="#" class="btn-pill">Sabia mais ...</a>
+              <a href="product-detail-iPad.html" class="btn-pill"
+                >Compre <i class="bi bi-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <div class="product-card">
+            <img
+              src="../imagens/iPads/ipadair13m3.png"
+              alt="iPad Air (M2)"
+              class="product-image rounded-4"
+            />
+            <h3 class="product-title">iPad Air (M2)</h3>
+            <div class="d-flex justify-content-center gap-2 mt-3">
+              <a href="#" class="btn-pill">Sabia mais ...</a>
+              <a href="product-detail-iPad.html" class="btn-pill"
+                >Compre <i class="bi bi-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <div class="product-card">
+            <img
+              src="../imagens/iPads/ipadpro10.5.jpg"
+              alt="iPad Pro 10.5"
+              class="product-image rounded-4"
+            />
+            <h3 class="product-title">iPad Pro 10.5</h3>
+            <div class="d-flex justify-content-center gap-2 mt-3">
+              <a href="#" class="btn-pill">Sabia mais ...</a>
+              <a href="product-detail-iPad.html" class="btn-pill"
+                >Compre <i class="bi bi-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <div class="product-card">
+            <img
+              src="../imagens/iPads/ipadair2.jpg"
+              alt="iPad Air 2"
+              class="product-image rounded-4"
+            />
+            <h3 class="product-title">iPad Air 2</h3>
+            <div class="d-flex justify-content-center gap-2 mt-3">
+              <a href="#" class="btn-pill">Sabia mais ...</a>
+              <a href="product-detail-iPad.html" class="btn-pill"
+                >Compre <i class="bi bi-arrow-right"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <ul class="footer-links">
-                <li><a href="#">Política de privacidade</a></li>
-                <li><a href="#">Termos e Condições</a></li>
-                <li><a href="#">FQAs</a></li>
-                <li><a href="#">contactos</a></li>
-            </ul>
-        </div>
+      <div class="container">
+        <ul class="footer-links">
+          <li><a href="#">Política de privacidade</a></li>
+          <li><a href="#">Termos e Condições</a></li>
+          <li><a href="#">FQAs</a></li>
+          <li><a href="#">contactos</a></li>
+        </ul>
+      </div>
     </footer>
 
     <script src="../Css/js/bootstrap.bundle.min.js"></script>
-</body>
+  </body>
 </html>
