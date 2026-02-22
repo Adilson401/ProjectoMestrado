@@ -29,37 +29,43 @@ function clearCartOnHome() {
         // Sincronizar carrinho ao carregar página
         syncCartCount();
 
-        // If product-detail page received `name` and `images` via query params, initialize the page
+        // If product-detail page received params, initialize the page
         const params = new URLSearchParams(window.location.search);
+        const productId = params.get('id');
         const imagesParam = params.get('images');
         const nameParam = params.get('name');
         const mainImg = document.querySelector('.product-main-image');
+        const ipadProduct = (productId && typeof getIpadProduct === 'function') ? getIpadProduct(productId) : null;
+        const iphoneProduct = (productId && typeof getIphoneProduct === 'function') ? getIphoneProduct(productId) : null;
+        const detailProduct = ipadProduct || iphoneProduct;
 
-        if (nameParam) {
-            // set page and product title when provided
+        if (detailProduct || nameParam) {
+            const nameValue = detailProduct ? detailProduct.name : decodeURIComponent(nameParam);
             const h2 = document.querySelector('h2');
             const titleEl = document.querySelector('.section-title');
-            if (h2) h2.textContent = decodeURIComponent(nameParam);
-            if (titleEl) titleEl.textContent = decodeURIComponent(nameParam);
-            document.title = decodeURIComponent(nameParam) + ' - Apple Store | Projecto PWD';
+            if (h2) h2.textContent = nameValue;
+            if (titleEl) titleEl.textContent = `Compre o ${nameValue}`;
+            document.title = nameValue + ' - Apple Store | Projecto PWD';
         }
 
-        if (imagesParam && mainImg) {
-            const imgs = imagesParam.split('|');
-            // set main image to first
+        if (detailProduct) {
+            const descEl = document.getElementById('productDescription');
+            if (descEl) descEl.textContent = detailProduct.description;
+        }
+
+        const imgs = detailProduct && detailProduct.images ? detailProduct.images : (imagesParam ? imagesParam.split('|') : null);
+        if (imgs && imgs.length && mainImg) {
             mainImg.src = imgs[0];
 
-            // find the color-dots container (the sibling div after the image)
             let dotsContainer = null;
             const imgParent = mainImg.parentElement;
             if (imgParent) {
                 dotsContainer = imgParent.querySelector('.mt-3.d-flex') || imgParent.querySelector('div');
             }
 
-            // remove existing dots and build new ones
             if (dotsContainer) {
                 dotsContainer.innerHTML = '';
-                const bgClasses = ['bg-secondary','bg-warning','bg-dark','bg-info','bg-light','bg-primary'];
+                const bgClasses = ['bg-secondary','bg-light','bg-dark','bg-info','bg-light','bg-primary'];
                 imgs.forEach((p,i)=>{
                     const span = document.createElement('span');
                     span.className = `color-dot d-inline-block ${bgClasses[i % bgClasses.length]} rounded-circle`;
@@ -72,41 +78,63 @@ function clearCartOnHome() {
             }
         }
 
-        const dots = document.querySelectorAll('.color-dot');
         let selectedColor = null;
         let selectedColorName = 'Indisponível';
-        
-        dots.forEach(dot => {
-            dot.addEventListener('click', () => {
-                const img = dot.getAttribute('data-img');
-                if(img && mainImg) mainImg.src = img;
-                dots.forEach(d=>d.classList.remove('border','border-2','border-primary'));
-                dot.classList.add('border','border-2','border-primary');
-                
-                // Get color from image filename
-                const colorMap = {
-                    'iphone17pro2.png': 'Laranja Cósmico',
-                    'iphone17pro3.png': 'Preto',
-                    'iphone17pro.png': 'Cinzento'
-                };
-                selectedColor = img;
-                const fileName = img.split('/').pop();
-                selectedColorName = colorMap[fileName] || fileName.split('.')[0];
-            });
-        });
+        const bindColorDots = () => {
+            const dots = document.querySelectorAll('.color-dot');
+            dots.forEach(dot => {
+                dot.addEventListener('click', () => {
+                    const img = dot.getAttribute('data-img');
+                    if (img && mainImg) mainImg.src = img;
+                    dots.forEach(d=>d.classList.remove('border','border-2','border-primary'));
+                    dot.classList.add('border','border-2','border-primary');
 
-        // Adicionar qualidade de armazenamento na página de detalhes do produto
-        let selectedCapacity = null;
-        const capButtons = document.querySelectorAll('.capacity-btn');
-        capButtons.forEach(btn=>{
-            btn.addEventListener('click', () => {
-                capButtons.forEach(b=>b.classList.remove('btn-primary'));
-                capButtons.forEach(b=>b.classList.add('btn-outline-secondary'));
-                btn.classList.remove('btn-outline-secondary');
-                btn.classList.add('btn-primary');
-                selectedCapacity = btn.getAttribute('data-cap');
+                    const colorMap = {
+                        'iphone17pro2.png': 'Laranja Cósmico',
+                        'iphone17pro3.png': 'Preto',
+                        'iphone17pro.png': 'Cinzento'
+                    };
+                    selectedColor = img;
+                    const fileName = img.split('/').pop();
+                    selectedColorName = colorMap[fileName] || fileName.split('.')[0];
+                });
             });
-        });
+        };
+
+        let selectedCapacity = null;
+        const bindCapacityButtons = () => {
+            const capButtons = document.querySelectorAll('.capacity-btn');
+            capButtons.forEach(btn=>{
+                btn.addEventListener('click', () => {
+                    capButtons.forEach(b=>b.classList.remove('btn-primary'));
+                    capButtons.forEach(b=>b.classList.add('btn-outline-secondary'));
+                    btn.classList.remove('btn-outline-secondary');
+                    btn.classList.add('btn-primary');
+                    selectedCapacity = btn.getAttribute('data-cap');
+                });
+            });
+        };
+
+        if (detailProduct) {
+            const capacityList = document.getElementById('capacityList');
+            if (capacityList) {
+                capacityList.innerHTML = '';
+                Object.entries(detailProduct.prices).forEach(([capacity, price]) => {
+                    const li = document.createElement('li');
+                    li.className = 'mb-2';
+                    const formattedPrice = Number(price).toFixed(2).replace('.', ',');
+                    li.innerHTML = `
+                        <button class="capacity-btn btn btn-outline-secondary w-100 text-start" data-cap="${capacity}">
+                            ${capacity} <span class="float-end">Desde ${formattedPrice} €</span>
+                        </button>
+                    `;
+                    capacityList.appendChild(li);
+                });
+            }
+        }
+
+        bindColorDots();
+        bindCapacityButtons();
 
         // adicionar ao carrinho e atualizar contador
         const cartBtn = document.querySelector('#addCartBtn');
@@ -146,30 +174,40 @@ function clearCartOnHome() {
                         productPrice = '1849.00';
                 }
             } else if (isIPad) {
-                // iPad Pro - Detalhes
+                // iPad - Detalhes dinâmicos
+                const prices = ipadProduct && ipadProduct.prices ? ipadProduct.prices : {
+                    '256 GB': 1479.00,
+                    '512 GB': 1729.00,
+                    '1 TB': 2209.00,
+                    '2 TB': 2689.00
+                };
+
                 productImage = mainImg ? mainImg.src : '../imagens/iPads/iPadPro13m5.png';
-                productName = 'iPad Pro';
-                switch (selectedCapacity) {
-                    case '256 GB':
-                        productPrice = '1479.00';
-                        break;
-                    case '512 GB':
-                        productPrice = '1729.00';
-                        break;
-                    case '1 TB':
-                        productPrice = '2209.00';
-                        break;
-                    case '2 TB':
-                        productPrice = '2689.00';
-                        break;
-                    default:
-                        productPrice = '1479.00';
+                productName = ipadProduct ? ipadProduct.name : 'iPad';
+
+                if (prices[selectedCapacity]) {
+                    productPrice = Number(prices[selectedCapacity]).toFixed(2);
+                } else {
+                    const firstPrice = Object.values(prices)[0];
+                    productPrice = firstPrice ? Number(firstPrice).toFixed(2) : '1479.00';
                 }
             } else {
-                // iPhone 17 Pro - Detalhes
+                // iPhone - Detalhes dinamicos
+                const prices = iphoneProduct && iphoneProduct.prices ? iphoneProduct.prices : {
+                    '256 GB': 1349.00,
+                    '512 GB': 1599.00,
+                    '1 TB': 1849.00
+                };
+
                 productImage = mainImg ? mainImg.src : '../imagens/iPhones/iPhone17pro/iphone17pro.png';
-                productName = 'iPhone 17 pro';
-                productPrice = selectedCapacity === '256 GB' ? '1349.00' : selectedCapacity === '512 GB' ? '1599.00' : '1849.00';
+                productName = iphoneProduct ? iphoneProduct.name : 'iPhone';
+
+                if (prices[selectedCapacity]) {
+                    productPrice = Number(prices[selectedCapacity]).toFixed(2);
+                } else {
+                    const firstPrice = Object.values(prices)[0];
+                    productPrice = firstPrice ? Number(firstPrice).toFixed(2) : '1349.00';
+                }
             }
             
             // Criar novo item para o carrinho

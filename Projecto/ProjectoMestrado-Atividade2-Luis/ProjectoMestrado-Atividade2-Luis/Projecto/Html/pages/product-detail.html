@@ -11,31 +11,89 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <script src="../Css/js/products-data.js"></script>
     <script src="../Css/js/helperfuncion.js" defer></script>
+    <script src="../Css/js/index.js" defer></script>
 </head>
 <body>
 
     <!-- Navbar (menu) -->
     <nav class="navbar navbar-expand-lg navbar-apple">
-        <div class="container d-flex justify-content-between align-items-center">
-            <a class="navbar-brand text-dark" href="Index.html"><i class="bi bi-apple"></i></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link nav-link-apple" href="productsIphones.html">iPhone</a></li>
-                    <li class="nav-item"><a class="nav-link nav-link-apple" href="Index.html">iPad</a></li>
-                    <li class="nav-item"><a class="nav-link nav-link-apple" href="Index.html">Mac</a></li>
-                </ul>
+        <div class="container d-flex align-items-center">
+            <a class="navbar-brand text-dark" href="Index.html">
+                <i class="bi bi-apple"></i>
+            </a>
+
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+                <div class="offcanvas-header border-bottom">
+                    <h5 class="offcanvas-title">Menu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-apple" href="productsIphones.html">iPhone</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-apple" href="productsIpads.html">iPad</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-apple" href="productsMacs.html">Mac</a>
+                        </li>
+
+                        <hr class="d-lg-none" />
+                        <li class="nav-item d-lg-none">
+                            <a class="nav-link d-flex align-items-center gap-2" href="login.html">
+                                <i class="bi bi-box-arrow-in-right"></i> Terminar Sessão
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="d-flex gap-4">
-                <a href="#" class="text-dark"><i class="bi bi-search"></i></a>
+
+            <div class="d-flex gap-4 align-items-center ms-auto">
+                <div class="position-relative" id="search-wrapper">
+                    <div id="search-icon-wrapper">
+                        <a href="javascript:void(0)" class="text-dark" onclick="toggleSearch()">
+                            <i class="bi bi-search"></i>
+                        </a>
+                    </div>
+
+                    <div id="search-active-wrapper" class="d-none search-floating-box">
+                        <div class="d-flex align-items-center border-bottom pb-2 mb-2">
+                            <input type="text" id="inputFocus" class="form-control form-control-sm border-0 shadow-none" placeholder="Pesquisar..." onkeyup="filterSearch()" />
+                            <button class="btn btn-sm" onclick="toggleSearch()">
+                                <i class="bi bi-x"></i>
+                            </button>
+                        </div>
+
+                        <ul id="searchResults" class="list-unstyled mb-0">
+                            <li class="category-item py-1">
+                                <a href="productsIphones.html" class="text-decoration-none text-dark fw-bold">iPhone</a>
+                            </li>
+                            <li class="category-item py-1">
+                                <a href="productsIpads.html" class="text-decoration-none text-dark fw-bold">iPad</a>
+                            </li>
+                            <li class="category-item py-1">
+                                <a href="productsMacs.html" class="text-decoration-none text-dark fw-bold">Mac</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
                 <a href="cart.html" class="text-dark position-relative">
                     <i class="bi bi-cart"></i>
                     <span id="cartCount" class="cart-badge">0</span>
                 </a>
-                <a href="cart.html" class="text-dark"><i class="bi bi-box-arrow-in-right"></i></a>
+
+                <a href="login.html" class="text-dark d-none d-lg-block">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                </a>
+
+                <button class="navbar-toggler border-0 ms-2 d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
             </div>
         </div>
     </nav>
@@ -61,10 +119,10 @@
             </div>
             <div class="col-md-5">
                 <h2>iPhone 17 pro</h2>
-                <p>Design inovador, para o melhor desempenho e maior autonomia.</p>
+                <p id="productDescription">Design inovador, para o melhor desempenho e maior autonomia.</p>
                 <div class="mb-4">
                     <h5>Armazenamento. De quanto espaço precisa?</h5>
-                    <ul class="list-unstyled">
+                    <ul id="capacityList" class="list-unstyled">
                         <li class="mb-2">
                             <button class="capacity-btn btn btn-outline-secondary w-100 text-start" data-cap="256 GB">256 GB <span class="float-end">Desde 1349,00 €</span></button>
                         </li>
@@ -80,39 +138,6 @@
             </div>
         </div>
 
-        <!-- testemunhas-->
-        <div class="row g-4 mt-5">
-            <div class="col-md-4">
-                <div class="review-card">
-                    <img src="../icons/perfil1.png" alt="Luís Silva" class="review-avatar">
-                    <h4 class="review-name">Luís Silva</h4>
-                    <p class="review-text">"Adorei a nova câmara do iPhone 17 Pro!"</p>
-                    <div class="stars">
-                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="review-card">
-                    <img src="../icons/perfil3.png" alt="Inês Silva" class="review-avatar">
-                    <h4 class="review-name">Inês Silva</h4>
-                    <p class="review-text">"Incrível a velocidade, CPU incrivelmente rápida".</p>
-                    <div class="stars">
-                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="review-card">
-                    <img src="../icons/perfil2.jpg" alt="Adilson Conceição" class="review-avatar">
-                    <h4 class="review-name">Adilson Conceição</h4>
-                    <p class="review-text">"Qualidade da imagem da tela".</p>
-                    <div class="stars">
-                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <!-- Testimonials space -->
