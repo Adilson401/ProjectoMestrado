@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apple Store | Projecto PWD</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="../Css/css/styleIndex.css" rel="stylesheet" />
+    <link href="../Css/css/index.css" rel="stylesheet" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts: Inter -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+    />
+    <!-- presention in external slideshow logic -->
+    <script src="../Css/js/helperfuncion.js" defer></script>
+    <script src="../Css/js/index.js" defer></script>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-apple">
+      <div class="container d-flex align-items-center">
+        <a class="navbar-brand text-dark" href="../pages/Index.html">
+          <i class="bi bi-apple"></i>
+        </a>
+
+        <!--Offcanvas-->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+          <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title">Menu</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <div class="offcanvas-body d-flex flex-column">
+            <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-apple"
+                  href="../pages/productsIphones.html"
+                  >iPhone</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-apple"
+                  href="../pages/productsMacs.html"
+                  >iPad</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-apple"
+                  href="../pages/productsMacs.html"
+                  >Mac</a
+                >
+              </li>
+            </ul>
+
+            <div class="mt-auto border-top pt-3 d-lg-none">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a
+                    class="nav-link d-flex align-items-center gap-2 text-danger"
+                    href="../pages/login.html"
+                  >
+                    <i class="bi bi-box-arrow-in-right"></i> Terminar Sessão
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-4 align-items-center ms-auto">
+          <div class="position-relative" id="search-wrapper">
+            <div id="search-icon-wrapper">
+              <a
+                href="javascript:void(0)"
+                class="text-dark"
+                onclick="toggleSearch()"
+              >
+                <i class="bi bi-search"></i>
+              </a>
+            </div>
+
+            <div id="search-active-wrapper" class="d-none search-floating-box">
+              <div class="d-flex align-items-center border-bottom pb-2 mb-2">
+                <input
+                  type="text"
+                  id="inputFocus"
+                  class="form-control form-control-sm border-0 shadow-none"
+                  placeholder="Pesquisar..."
+                  onkeyup="filterSearch()"
+                />
+                <button class="btn btn-sm" onclick="toggleSearch()">
+                  <i class="bi bi-x"></i>
+                </button>
+              </div>
+
+              <ul id="searchResults" class="list-unstyled mb-0">
+                <li class="category-item py-1">
+                  <a
+                    href="../pages/productsIphones.html"
+                    class="text-decoration-none text-dark fw-bold"
+                    >iPhone</a
+                  >
+                </li>
+                <li class="category-item py-1">
+                  <a
+                    href="../pages/productsIpads.html"
+                    class="text-decoration-none text-dark fw-bold"
+                    >iPad</a
+                  >
+                </li>
+                <li class="category-item py-1">
+                  <a
+                    href="../pages/productsIpads.html"
+                    class="text-decoration-none text-dark fw-bold"
+                    >Mac</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <a href="../pages/cart.html" class="text-dark position-relative">
+            <i class="bi bi-cart"></i>
+            <span id="cartCount" class="cart-badge">0</span>
+          </a>
+
+          <a href="../pages/login.html" class="text-dark d-none d-lg-block">
+            <i class="bi bi-box-arrow-in-right"></i>
+          </a>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- iPhone header -->
+    <div class="container mt-4 mb-4">
+      <div class="d-flex align-items-center gap-3 mb-4">
+        <a
+          href="javascript:history.back()"
+          class="btn btn-outline-secondary btn-sm rounded-circle d-flex align-items-center justify-content-center"
+          style="width: 40px; height: 40px; font-size: 20px"
+          ><i class="bi bi-arrow-left"></i
+        ></a>
+        <h1 class="section-title mb-0">iPhone 17 Pro</h1>
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <div class="row align-items-center bg-white p-5 position-relative">
+        <div class="position-absolute top-0 start-0 m-4">
+          <a
+            href="javascript:history.back()"
+            class="btn btn-outline-dark rounded-circle d-flex align-items-center justify-content-center"
+            style="width: 40px; height: 40px; border-width: 1px; opacity: 0.6"
+          >
+            <i class="bi bi-arrow-left"></i>
+          </a>
+        </div>
+
+        <div class="col-md-6 text-center">
+          <h2
+            class="h5 mb-0"
+            style="color: #a34e24; font-weight: 400; letter-spacing: 1px"
+          >
+            iPhone 17
+          </h2>
+          <h1
+            class="display-1 fw-bold"
+            style="color: #a34e24; letter-spacing: -2px; line-height: 1"
+          >
+            PRO
+          </h1>
+        </div>
+
+        <div class="col-md-6 d-flex justify-content-end">
+          <img
+            src="../imagens/informacaodosprodutos/iPhone/iphone17pro/iphone17procapa.jpg"
+            alt="iPhone 17 Pro"
+            class="img-fluid"
+            style="
+              max-height: 350px;
+              transform: rotate(15deg);
+              filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.1));
+            "
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <ul class="footer-links">
+          <li><a href="../pages/polity.html">Política de privacidade</a></li>
+          <li>
+            <a href="../pages/termsconditions.html">Termos e Condições</a>
+          </li>
+          <li><a href="../pages/fqa.html">FQAs</a></li>
+          <li><a href="../pages/contacts.html">contactos</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <script src="../Css/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
