@@ -27,6 +27,7 @@ function highlightStars(index) {
 function resetStars() {
   highlightStars(currentRating);
 }
+<<<<<<< HEAD
 
 // 2. Lógica do Formulário
 const mainForm = document.getElementById("Register");
@@ -78,3 +79,5 @@ if (mainForm) {
     false,
   );
 }
+=======
+>>>>>>> 1ba1b0dd5cd249d056388c4d061f472161b5b97c

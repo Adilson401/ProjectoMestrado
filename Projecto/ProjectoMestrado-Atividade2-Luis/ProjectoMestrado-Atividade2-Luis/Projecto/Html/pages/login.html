@@ -23,23 +23,19 @@
     <!-- presention in external slideshow logic -->
     <script src="../Css/js/slideShow.js" defer></script>
     <script src="../Css/js/helperfuncion.js" defer></script>
+    <script src="../Css/js/index.js" defer></script>
     <script src="../Css/js/login.js" defer></script>
   </head>
   <body>
-    <!-- Navbar -->
+    <!-- Navbar (menu) -->
     <nav class="navbar navbar-expand-lg navbar-apple">
       <div class="container d-flex align-items-center">
         <a class="navbar-brand text-dark" href="../pages/Index.html">
           <i class="bi bi-apple"></i>
         </a>
 
-        <!--Offcanvas-->
-        <div
-          class="offcanvas offcanvas-start show w-100"
-          tabindex="-1"
-          id="offcanvasNavbar"
-        >
-          <div class="offcanvas-header border-bottom border-2 border-black">
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+          <div class="offcanvas-header border-bottom">
             <h5 class="offcanvas-title">Menu</h5>
             <button
               type="button"
@@ -49,43 +45,37 @@
             ></button>
           </div>
 
-          <div class="offcanvas-body d-flex flex-column">
+          <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
               <li class="nav-item">
                 <a
                   class="nav-link nav-link-apple"
                   href="../pages/productsIphones.html"
-                  >iPhone</a
-                >
+                  >iPhone</a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-apple"
+                  href="../pages/productsIpads.html"
+                  >iPad</a>
               </li>
               <li class="nav-item">
                 <a
                   class="nav-link nav-link-apple"
                   href="../pages/productsMacs.html"
-                  >iPad</a
-                >
+                  >Mac</a>
               </li>
-              <li class="nav-item">
+
+              <hr class="d-lg-none" />
+              <li class="nav-item d-lg-none">
                 <a
-                  class="nav-link nav-link-apple"
-                  href="../pages/productsMacs.html"
-                  >Mac</a
+                  class="nav-link d-flex align-items-center gap-2"
+                  href="../pages/cart.html"
                 >
+                  <i class="bi bi-box-arrow-in-right"></i> Terminar Sessão
+                </a>
               </li>
             </ul>
-
-            <div class="mt-auto border-top pt-3 d-lg-none">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a
-                    class="nav-link d-flex align-items-center gap-2 text-danger"
-                    href="../pages/login.html"
-                  >
-                    <i class="bi bi-box-arrow-in-right"></i> Terminar Sessão
-                  </a>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
 
@@ -120,22 +110,19 @@
                   <a
                     href="../pages/productsIphones.html"
                     class="text-decoration-none text-dark fw-bold"
-                    >iPhone</a
-                  >
+                    >iPhone</a>
                 </li>
                 <li class="category-item py-1">
                   <a
                     href="../pages/productsIpads.html"
                     class="text-decoration-none text-dark fw-bold"
-                    >iPad</a
-                  >
+                    >iPad</a>
                 </li>
                 <li class="category-item py-1">
                   <a
-                    href="../pages/productsIpads.html"
+                    href="../pages/productsMacs.html"
                     class="text-decoration-none text-dark fw-bold"
-                    >Mac</a
-                  >
+                    >Mac</a>
                 </li>
               </ul>
             </div>
@@ -147,23 +134,20 @@
           </a>
 
           <a href="../pages/login.html" class="text-dark d-none d-lg-block">
-            <i class="bi bi-person"></i>
+            <i class="bi bi-box-arrow-in-right"></i>
           </a>
 
           <button
-            class="navbar-toggler"
+            class="navbar-toggler border-0 ms-2 d-lg-none"
             type="button"
             data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasNavbar"
-            aria-controls="offcanvasNavbar"
-            aria-label="Toggle navigation"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
       </div>
     </nav>
-
     <div class="container mt-5">
       <div class="row justify-content-center">
         <h2 class="col-8 col-md-12 mx-auto text-center titulo">
@@ -173,33 +157,30 @@
 
       <div class="row justify-content-center">
         <div class="col-12 col-md-6 text-center">
-          <form id="mainLoginForm" class="row g-3 needs-validation" novalidate>
+          <form class="row g-3 needs-validation" novalidate>
             <div class="row justify-content-center mt-4">
-              <div class="col-12 col-md-8">
-                <div class="position-relative">
+              <div class="col-12 col-md-8 position-relative">
+                <div class="mt-2 mb-2 has-validation">
                   <input
                     type="email"
-                    class="form-control border-3"
+                    class="form-control inputtexto border-3"
                     id="validationEmail"
-                    placeholder="exemplo@email.com"
+                    placeholder="Email"
                     required
                   />
-                  <div class="invalid-feedback text-start">
-                    Por favor, insira um email válido.
-                  </div>
+                  <div class="invalid-tooltip">Email inválido</div>
                 </div>
               </div>
             </div>
-
+            <!--Para a página Principal (index.html)-->
             <div class="row justify-content-center mt-4">
-              <div class="col-12 col-md-8 text-center">
-                <button class="btn btn-primary px-5" type="submit">
-                  Seguinte
-                </button>
+              <div class="col-12 col-md-6">
+                <button class="btn btn-primary" type="submit">Seguinte</button>
               </div>
             </div>
           </form>
 
+          <!--Para a página do registo -->
           <div class="d-flex justify-content-center gap-2 mb-3 mt-2">
             <span>Não tem uma conta?</span>
             <a href="../pages/register.html" class="text-decoration-none"
@@ -207,7 +188,8 @@
             ></a>
           </div>
 
-          <div class="d-grid gap-2 col-12 col-md-6 mx-auto mt-5">
+          <!--Com a conta google (em modal) -->
+          <div class="d-grid gap-2 col-12 col-md-6 mx-auto">
             <button
               type="button"
               class="btn btn-outline-dark d-flex align-items-center justify-content-center gap-2"
@@ -217,59 +199,51 @@
               <i class="bi bi-google"></i>
               Faça login com Google
             </button>
-          </div>
 
-          <div
-            class="modal fade"
-            id="exampleModal"
-            tabindex="-1"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog">
-              <div class="modal-content text-start">
-                <form id="loginForm" class="needs-validation" novalidate>
-                  <div class="modal-header border-bottom border-3">
-                    <h1 class="modal-title fs-5">
-                      <i class="bi bi-google me-2"></i>Iniciar Sessão
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content text-start">
+                  <div class="modal-header border-bottom border-black border-3">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">
+                      <i class="bi bi-google me-2"></i>Iniciar Sessão com Google
                     </h1>
                     <button
                       type="button"
                       class="btn-close"
                       data-bs-dismiss="modal"
+                      aria-label="Close"
                     ></button>
                   </div>
 
                   <div class="modal-body">
-                    <div class="mb-3">
-                      <label for="email-name" class="form-label fw-bold"
-                        >Email:</label
-                      >
-                      <input
-                        type="email"
-                        class="form-control border-2"
-                        id="email-name"
-                        required
-                      />
-                      <div class="invalid-feedback">
-                        Insira um email válido.
+                    <form>
+                      <div class="mb-3">
+                        <label for="email-name" class="form-label fw-bold"
+                          >Email:</label
+                        >
+                        <input
+                          type="email"
+                          class="form-control border-3"
+                          id="email-name"
+                        />
                       </div>
-                    </div>
-
-                    <div class="mb-3">
-                      <label for="password-text" class="form-label fw-bold"
-                        >Senha:</label
-                      >
-                      <input
-                        type="password"
-                        class="form-control border-2"
-                        id="password-text"
-                        required
-                        minlength="6"
-                      />
-                      <div class="invalid-feedback">
-                        Mínimo de 6 caracteres.
+                      <div class="mb-3">
+                        <label for="password-text" class="form-label fw-bold"
+                          >Password:</label
+                        >
+                        <input
+                          type="password"
+                          class="form-control border-3"
+                          id="password-text"
+                        />
                       </div>
-                    </div>
+                    </form>
                   </div>
 
                   <div class="modal-footer">
@@ -280,11 +254,12 @@
                     >
                       Fechar
                     </button>
-                    <button type="submit" class="btn btn-primary">
+                    <!--Para página principal-->
+                    <button type="button" class="btn btn-primary">
                       Entrar
                     </button>
                   </div>
-                </form>
+                </div>
               </div>
             </div>
           </div>

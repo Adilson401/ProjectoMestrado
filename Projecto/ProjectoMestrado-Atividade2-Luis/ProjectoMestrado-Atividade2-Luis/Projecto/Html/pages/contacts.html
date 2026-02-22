@@ -23,24 +23,23 @@
     />
     <!-- presention in external slideshow logic -->
     <script src="../Css/js/slideShow.js" defer></script>
+<<<<<<< HEAD
     <script src="../Css/js/helperfuncion.js" defer></script>
     <script src="../Css/js/contacts.js" defer></script>
+=======
+    <script src="../Css/js/helperfuncion.js" defer></script>    <script src="../Css/js/index.js" defer></script>    <script src="../Css/js/animationrating.js" defer></script>
+>>>>>>> 1ba1b0dd5cd249d056388c4d061f472161b5b97c
   </head>
   <body>
-    <!-- Navbar -->
+    <!-- Navbar (menu) -->
     <nav class="navbar navbar-expand-lg navbar-apple">
       <div class="container d-flex align-items-center">
         <a class="navbar-brand text-dark" href="../pages/Index.html">
           <i class="bi bi-apple"></i>
         </a>
 
-        <!--Offcanvas-->
-        <div
-          class="offcanvas offcanvas-start show w-100"
-          tabindex="-1"
-          id="offcanvasNavbar"
-        >
-          <div class="offcanvas-header border-bottom border-2 border-black">
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+          <div class="offcanvas-header border-bottom">
             <h5 class="offcanvas-title">Menu</h5>
             <button
               type="button"
@@ -50,43 +49,37 @@
             ></button>
           </div>
 
-          <div class="offcanvas-body d-flex flex-column">
+          <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
               <li class="nav-item">
                 <a
                   class="nav-link nav-link-apple"
                   href="../pages/productsIphones.html"
-                  >iPhone</a
-                >
+                  >iPhone</a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link nav-link-apple"
+                  href="../pages/productsIpads.html"
+                  >iPad</a>
               </li>
               <li class="nav-item">
                 <a
                   class="nav-link nav-link-apple"
                   href="../pages/productsMacs.html"
-                  >iPad</a
-                >
+                  >Mac</a>
               </li>
-              <li class="nav-item">
+
+              <hr class="d-lg-none" />
+              <li class="nav-item d-lg-none">
                 <a
-                  class="nav-link nav-link-apple"
-                  href="../pages/productsMacs.html"
-                  >Mac</a
+                  class="nav-link d-flex align-items-center gap-2"
+                  href="../pages/cart.html"
                 >
+                  <i class="bi bi-box-arrow-in-right"></i> Terminar Sessão
+                </a>
               </li>
             </ul>
-
-            <div class="mt-auto border-top pt-3 d-lg-none">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a
-                    class="nav-link d-flex align-items-center gap-2 text-danger"
-                    href="../pages/login.html"
-                  >
-                    <i class="bi bi-box-arrow-in-right"></i> Terminar Sessão
-                  </a>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
 
@@ -121,22 +114,19 @@
                   <a
                     href="../pages/productsIphones.html"
                     class="text-decoration-none text-dark fw-bold"
-                    >iPhone</a
-                  >
+                    >iPhone</a>
                 </li>
                 <li class="category-item py-1">
                   <a
                     href="../pages/productsIpads.html"
                     class="text-decoration-none text-dark fw-bold"
-                    >iPad</a
-                  >
+                    >iPad</a>
                 </li>
                 <li class="category-item py-1">
                   <a
-                    href="../pages/productsIpads.html"
+                    href="../pages/productsMacs.html"
                     class="text-decoration-none text-dark fw-bold"
-                    >Mac</a
-                  >
+                    >Mac</a>
                 </li>
               </ul>
             </div>
@@ -148,23 +138,20 @@
           </a>
 
           <a href="../pages/login.html" class="text-dark d-none d-lg-block">
-            <i class="bi bi-person"></i>
+            <i class="bi bi-box-arrow-in-right"></i>
           </a>
 
           <button
-            class="navbar-toggler"
+            class="navbar-toggler border-0 ms-2 d-lg-none"
             type="button"
             data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasNavbar"
-            aria-controls="offcanvasNavbar"
-            aria-label="Toggle navigation"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
       </div>
     </nav>
-
     <div class="container mt-5">
       <div class="row justify-content-center">
         <h2 class="col-8 col-md-12 mx-auto text-center titulo mb-4">
@@ -174,76 +161,62 @@
 
       <div class="row justify-content-center">
         <div class="col-12 col-md-6 col-lg-4 text-center">
-          <form id="Register" class="row g-3 needs-validation" novalidate>
-            <div class="mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="inputNome"
-                placeholder="Nome*"
-                required
-              />
-              <div class="invalid-feedback text-start">
-                Por favor, insira um Nome válido.
-              </div>
-            </div>
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="inputNome"
+              placeholder="Nome*"
+              required
+            />
+          </div>
 
-            <div class="mb-3">
-              <input
-                type="email"
-                class="form-control"
-                id="inputEmail"
-                placeholder="Endereço de Email*"
-                required
-              />
-              <div class="invalid-feedback text-start">
-                Por favor, insira um email válido.
-              </div>
-            </div>
+          <div class="mb-3">
+            <input
+              type="email"
+              class="form-control"
+              id="inputEmail"
+              placeholder="Endereço de Email*"
+              required
+            />
+          </div>
 
-            <div class="mb-3">
-              <select class="form-select" id="inputFeedbackType" required>
-                <option selected disabled value="">
-                  Selecione o tipo de Feedback
-                </option>
-                <option value="iPhone">iPhone</option>
-                <option value="iPad">iPad</option>
-                <option value="Mac">Mac</option>
-                <option value="Plataforma">Plataforma</option>
-                <option value="Outro">Outro</option>
-              </select>
-              <div class="invalid-feedback text-start">
-                Por favor, selecione um tipo de Feedback.
-              </div>
-            </div>
+          <div class="mb-3">
+            <select
+              class="form-select"
+              aria-label="Selecione o tipo de Feedback"
+            >
+              <option selected disabled>Selecione o tipo de Feedback</option>
+              <option value="1">iPhone</option>
+              <option value="2">iPad</option>
+              <option value="3">Mac</option>
+              <option value="4">Plataforma</option>
+              <option value="5">Outro</option>
+            </select>
+          </div>
 
-            <div class="mb-3">
-              <textarea
-                class="form-control"
-                id="textoComentarios"
-                placeholder="Comentários*"
-                rows="5"
-                required
-              ></textarea>
-              <div class="invalid-feedback text-start">
-                Por favor, insira seus comentários.
-              </div>
+          <div class="mb-3">
+            <textarea
+              class="form-control"
+              id="textoComentarios"
+              placeholder="Comentários*"
+              rows="5"
+              required
+            ></textarea>
+          </div>
+          <div class="mb-3">
+            <div id="star-rating" class="star-container">
+              <i class="bi bi-star" data-index="0"></i>
+              <i class="bi bi-star" data-index="1"></i>
+              <i class="bi bi-star" data-index="2"></i>
+              <i class="bi bi-star" data-index="3"></i>
+              <i class="bi bi-star" data-index="4"></i>
             </div>
+          </div>
 
-            <div class="mb-3">
-              <div id="star-rating" class="star-container">
-                <i class="bi bi-star" data-index="1"></i>
-                <i class="bi bi-star" data-index="2"></i>
-                <i class="bi bi-star" data-index="3"></i>
-                <i class="bi bi-star" data-index="4"></i>
-                <i class="bi bi-star" data-index="5"></i>
-              </div>
-            </div>
-
-            <button type="submit" class="btn btn-outline-primary mt-2">
-              Enviar Feedback <i class="bi bi-arrow-right-short"></i>
-            </button>
-          </form>
+          <button type="submit" class="btn btn-outline-primary mt-2">
+            Enviar Feedback <i class="bi bi-arrow-right-short"></i>
+          </button>
         </div>
       </div>
     </div>

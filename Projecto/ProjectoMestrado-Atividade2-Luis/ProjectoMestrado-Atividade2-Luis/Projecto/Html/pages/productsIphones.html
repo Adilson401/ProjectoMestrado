@@ -20,24 +20,20 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
     />
+    <script src="../Css/js/products-data.js"></script>
     <script src="../Css/js/helperfuncion.js" defer></script>
     <script src="../Css/js/index.js" defer></script>
   </head>
   <body>
-    <!-- Navbar -->
+    <!-- Navbar (menu) -->
     <nav class="navbar navbar-expand-lg navbar-apple">
       <div class="container d-flex align-items-center">
         <a class="navbar-brand text-dark" href="../pages/Index.html">
           <i class="bi bi-apple"></i>
         </a>
 
-        <!--Offcanvas-->
-        <div
-          class="offcanvas offcanvas-start show w-100"
-          tabindex="-1"
-          id="offcanvasNavbar"
-        >
-          <div class="offcanvas-header border-bottom border-2 border-black">
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar">
+          <div class="offcanvas-header border-bottom">
             <h5 class="offcanvas-title">Menu</h5>
             <button
               type="button"
@@ -47,7 +43,7 @@
             ></button>
           </div>
 
-          <div class="offcanvas-body d-flex flex-column">
+          <div class="offcanvas-body">
             <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
               <li class="nav-item">
                 <a
@@ -59,7 +55,7 @@
               <li class="nav-item">
                 <a
                   class="nav-link nav-link-apple"
-                  href="../pages/productsMacs.html"
+                  href="../pages/productsIpads.html"
                   >iPad</a
                 >
               </li>
@@ -70,20 +66,17 @@
                   >Mac</a
                 >
               </li>
-            </ul>
 
-            <div class="mt-auto border-top pt-3 d-lg-none">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a
-                    class="nav-link d-flex align-items-center gap-2 text-danger"
-                    href="../pages/login.html"
-                  >
-                    <i class="bi bi-box-arrow-in-right"></i> Terminar Sessão
-                  </a>
-                </li>
-              </ul>
-            </div>
+              <hr class="d-lg-none" />
+              <li class="nav-item d-lg-none">
+                <a
+                  class="nav-link d-flex align-items-center gap-2"
+                  href="../pages/cart.html"
+                >
+                  <i class="bi bi-box-arrow-in-right"></i> Terminar Sessão
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -123,14 +116,14 @@
                 </li>
                 <li class="category-item py-1">
                   <a
-                    href="../pages/productsIpads.html"
+                    href="productsIpads.html"
                     class="text-decoration-none text-dark fw-bold"
                     >iPad</a
                   >
                 </li>
                 <li class="category-item py-1">
                   <a
-                    href="../pages/productsIpads.html"
+                    href="productsMacs.html"
                     class="text-decoration-none text-dark fw-bold"
                     >Mac</a
                   >
@@ -149,12 +142,10 @@
           </a>
 
           <button
-            class="navbar-toggler"
+            class="navbar-toggler border-0 ms-2 d-lg-none"
             type="button"
             data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasNavbar"
-            aria-controls="offcanvasNavbar"
-            aria-label="Toggle navigation"
           >
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -211,7 +202,11 @@
             <h3 class="product-title">iPhone 16</h3>
             <div class="d-flex justify-content-center gap-2">
               <a href="#" class="btn-pill">Saiba mais...</a>
+<<<<<<< HEAD
               <a href="product-detail.html?p=iphone16" class="btn-pill"
+=======
+              <a href="product-detail.html" class="btn-pill"
+>>>>>>> 1ba1b0dd5cd249d056388c4d061f472161b5b97c
                 >Compre <i class="bi bi-arrow-right"></i
               ></a>
             </div>
@@ -397,5 +392,31 @@
     </footer>
 
     <script src="../Css/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const iphoneMapping = [
+        { id: 'iphone-17-pro' },
+        { id: 'iphone-17' },
+        { id: 'iphone-16' },
+        { id: 'iphone-15' },
+        { id: 'iphone-plus' },
+        { id: 'iphone-14' },
+        { id: 'iphone-13' },
+        { id: 'iphone-12' },
+        { id: 'iphone-11' }
+      ];
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const productCards = document.querySelectorAll('.product-card');
+        productCards.forEach((card, index) => {
+          if (index < iphoneMapping.length) {
+            const productId = iphoneMapping[index].id;
+            const buyLink = card.querySelector('a[href*="product-detail.html"]');
+            if (buyLink) {
+              buyLink.href = getIphoneProductURL(productId);
+            }
+          }
+        });
+      });
+    </script>
   </body>
 </html>
